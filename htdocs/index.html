@@ -165,7 +165,10 @@
       <h2 class="section-heading" data-content="pages.home.reservation.heading">Join Us for an Unforgettable Evening</h2>
       <p class="reservation-cta__sub" data-content="pages.home.reservation.subtext">We recommend reservations, especially on weekends. Walk-ins welcome based on availability.</p>
       <div class="reservation-cta__actions">
-        <!-- Reserve button injected by worker when reservations_url is set; falls back to contact link -->
+        <!-- Reserve button: integration link injected by worker when reservations_url is set,
+             static /contact fallback shown when it is not set -->
+        <a class="btn btn--primary btn--lg reservation-cta-fallback" href="/contact" data-content="pages.home.reservation.ctaText">Reserve a Table</a>
+        <!-- Integration CTA injected here by worker (replaces fallback when URL is set) -->
         <span data-content-integrations-cta></span>
         <a class="btn btn--ghost btn--lg" data-content-phone href="tel:+15551234567">Call Us</a>
       </div>

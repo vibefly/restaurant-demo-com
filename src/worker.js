@@ -51,7 +51,7 @@ async function renderPage(env, url) {
         if (!formCfg.thankYouSub && formCfg.thankYouSubtext) formCfg.thankYouSub = formCfg.thankYouSubtext;
         if (!formCfg.thankYouSubtext && formCfg.thankYouSub) formCfg.thankYouSubtext = formCfg.thankYouSub;
 
-        // Integration URLs
+        // Integration URLs — only treat as set when non-empty after trimming
         const reservationsUrl = (integrations.reservations_url || '').trim();
         const orderUrl        = (integrations.order_url        || '').trim();
         const hasReservations = !!reservationsUrl;
@@ -93,8 +93,7 @@ async function renderPage(env, url) {
 
         // ── Integration HTML fragments ───────────────────────────────────────────
 
-        // Header nav: reserve button only when reservations_url is set
-        // (order button also shown if order_url is set)
+        // Header nav: integration buttons only when URLs are set
         let integNavHtml = '';
         if (hasOrder) {
             integNavHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
@@ -103,7 +102,8 @@ async function renderPage(env, url) {
             integNavHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve</a>`;
         }
 
-        // Hero CTA group: reserve button replaces the default /contact link when set
+        // Hero CTA group: integration buttons only when URLs are set
+        // When present they replace the default static buttons (which the worker removes below)
         let integHeroHtml = '';
         if (hasReservations) {
             integHeroHtml += `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${escHtml(content.hero && content.hero.ctaText ? content.hero.ctaText : 'Reserve a Table')}</a>`;
@@ -112,7 +112,7 @@ async function renderPage(env, url) {
             integHeroHtml += `<a class="btn btn--ghost btn--lg integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Page-level (contact/menu hero): reserve / order buttons
+        // Page-level hero (contact/menu): integration buttons only when URLs are set
         let integPageHtml = '';
         if (hasReservations && pathname === '/contact') {
             integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
@@ -121,17 +121,20 @@ async function renderPage(env, url) {
             integPageHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Reservation CTA section: always show a primary reserve action
-        // If reservations_url set → external link; otherwise → /contact
+        // Reservation CTA section:
+        // Only inject an integration button when reservations_url is set.
+        // When NOT set, the static .reservation-cta-fallback anchor in the HTML is used as-is.
+        // When SET, inject the integration button AND remove the static fallback.
         let integCtaHtml = '';
         if (hasReservations) {
-            const ctaLabel = escHtml((pageData && content.pages.home && content.pages.home.reservation && content.pages.home.reservation.ctaText) || 'Reserve a Table');
+            const ctaLabel = escHtml(
+                (content.pages && content.pages.home && content.pages.home.reservation && content.pages.home.reservation.ctaText)
+                || 'Reserve a Table'
+            );
             integCtaHtml = `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${ctaLabel}</a>`;
-        } else {
-            // Fall back: link to contact page
-            const ctaLabel = escHtml((content.pages && content.pages.home && content.pages.home.reservation && content.pages.home.reservation.ctaText) || 'Reserve a Table');
-            integCtaHtml = `<a class="btn btn--primary btn--lg" href="/contact">${ctaLabel}</a>`;
         }
+        // If !hasReservations: integCtaHtml stays '' — the <span> becomes empty and the
+        // static .reservation-cta-fallback anchor remains visible.
 
         // Contact page: reservations info block
         // Only rendered when reservations_url is set
@@ -277,7 +280,15 @@ async function renderPage(env, url) {
                 element(el) { el.setInnerContent(integPageHtml, { html: true }); }
             })
             .on('[data-content-integrations-cta]', {
-                element(el) { el.replace(integCtaHtml, { html: true }); }
+                element(el) {
+                    // Only inject when there is an integration URL; otherwise remove the
+                    // span entirely so the static .reservation-cta-fallback is shown
+                    if (integCtaHtml) {
+                        el.replace(integCtaHtml, { html: true });
+                    } else {
+                        el.remove();
+                    }
+                }
             })
             .on('[data-content-reservations-block]', {
                 element(el) {
@@ -299,6 +310,14 @@ async function renderPage(env, url) {
             })
             // Hide the default header-cta link when integration provides a reserve button
             .on('.header-cta', {
+                element(el) {
+                    if (hasReservations) {
+                        el.remove();
+                    }
+                }
+            })
+            // Hide the static CTA fallback when the integration button is injected
+            .on('.reservation-cta-fallback', {
                 element(el) {
                     if (hasReservations) {
                         el.remove();
