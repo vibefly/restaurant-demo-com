@@ -28,6 +28,8 @@ async function renderPage(env, url) {
             htmlPath = '/menu.html';
         } else if (pathname === '/contact') {
             htmlPath = '/contact.html';
+        } else if (pathname === '/events') {
+            htmlPath = '/events.html';
         } else {
             return new Response('Page not found', { status: 404 });
         }
@@ -62,7 +64,29 @@ async function renderPage(env, url) {
         const pageData = (content.pages && content.pages[slug]) || null;
         const sections = (pageData && pageData.sections) || [];
 
-        const nav = Array.isArray(content.nav) ? content.nav : [];
+        // Events: check whether events exist (used for nav filtering + /events 404)
+        const eventsItems = (
+            content.pages &&
+            content.pages.events &&
+            Array.isArray(content.pages.events.items) &&
+            content.pages.events.items.length > 0
+        ) ? content.pages.events.items : null;
+
+        // Return 404 for /events when no events are configured
+        if (pathname === '/events' && !eventsItems) {
+            return new Response('Page not found', { status: 404 });
+        }
+
+        const rawNav = Array.isArray(content.nav) ? content.nav : [];
+
+        // Filter out the Events nav link when there are no events
+        const nav = rawNav.filter(item => {
+            if ((item.href || '').replace(/\/+$/, '') === '/events' && !eventsItems) {
+                return false;
+            }
+            return true;
+        });
+
         const phone     = biz.phone     || '';
         const phoneHref = biz.phoneHref || (phone ? `tel:${phone.replace(/\D/g, '')}` : '#');
 
@@ -111,13 +135,16 @@ async function renderPage(env, url) {
             integHeroHtml += `<a class="btn btn--ghost btn--lg integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Page-level hero (contact/menu)
+        // Page-level hero (contact/menu/events)
         let integPageHtml = '';
         if (hasReservations && pathname === '/contact') {
             integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
         }
         if (hasOrder && pathname === '/menu') {
             integPageHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
+        }
+        if (hasReservations && pathname === '/events') {
+            integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
         }
 
         // Reservation CTA section
@@ -136,6 +163,11 @@ async function renderPage(env, url) {
             reservationsBlockHtml = `<h3 class="contact-info__heading">Reservations</h3><p class="contact-private-text">Book your table quickly and easily through our online reservation system.</p><a class="btn btn--primary" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
         }
 
+        // Events listing — rendered for /events page
+        const eventsListingHtml = pathname === '/events'
+            ? renderEventsListing(eventsItems || [], reservationsUrl)
+            : '';
+
         // Build nav HTML
         const navHtml = nav.map(item =>
             `<li><a class="nav-link" href="${escAttr(item.href || '#')}">${escHtml(item.label || '')}</a></li>`
@@ -143,7 +175,7 @@ async function renderPage(env, url) {
 
         const sectionsHtml = sections.map((sec, idx) => renderSection(sec, idx)).join('\n');
 
-        // ── Menu tabs & panels (new structure) ──────────────────────────────────
+        // ── Menu tabs & panels ──────────────────────────────────────────────────
         const menus = (pageData && pageData.menus) || [];
         const menuTabsHtml   = renderMenuTabs(menus);
         const menuPanelsHtml = renderMenuPanels(menus);
@@ -265,14 +297,14 @@ async function renderPage(env, url) {
                     if (content.footer && content.footer.copyright) el.setInnerContent(content.footer.copyright);
                 }
             })
-            // ── Menu tabs & panels ───────────────────────────────────────────────
+            // ── Menu tabs & panels ─────────────────────────────────────────────
             .on('[data-content-menu-tabs]', {
                 element(el) { el.setInnerContent(menuTabsHtml, { html: true }); }
             })
             .on('[data-content-menu-panels]', {
                 element(el) { el.setInnerContent(menuPanelsHtml, { html: true }); }
             })
-            // ── Integration injection points ─────────────────────────────────────
+            // ── Integration injection points ───────────────────────────────────
             .on('[data-content-integrations-nav]', {
                 element(el) { el.setInnerContent(integNavHtml, { html: true }); }
             })
@@ -300,7 +332,15 @@ async function renderPage(env, url) {
                     }
                 }
             })
-            // ── Static reserve fallback elements — ALWAYS removed ────────────────
+            // ── Events listing injected into #events-list ──────────────────────
+            .on('#events-list', {
+                element(el) {
+                    if (eventsListingHtml) {
+                        el.setInnerContent(eventsListingHtml, { html: true });
+                    }
+                }
+            })
+            // ── Static reserve fallback elements — ALWAYS removed ──────────────
             .on('.hero-reserve-btn', {
                 element(el) { el.remove(); }
             })
@@ -310,7 +350,7 @@ async function renderPage(env, url) {
             .on('.reservation-cta-fallback', {
                 element(el) { el.remove(); }
             })
-            // ── Static order fallback elements — ALWAYS removed ──────────────────
+            // ── Static order fallback elements — ALWAYS removed ────────────────
             .on('.order-online-btn', {
                 element(el) { el.remove(); }
             });
@@ -329,12 +369,54 @@ async function renderPage(env, url) {
     }
 }
 
-// ── Menu rendering helpers ─────────────────────────────────────────────────────
+// ── Events listing renderer ────────────────────────────────────────────────────
 
 /**
- * Render the top-level tab bar from the menus array.
- * First menu is active by default.
+ * Render all event cards for the /events page into .events-page-grid.
+ * Each card shows: date badge, tag, title, meta (date string / time / price),
+ * description, and a CTA button.
  */
+function renderEventsListing(items, reservationsUrl) {
+    if (!items || items.length === 0) return '';
+
+    const ctaHref   = reservationsUrl || '/contact';
+    const ctaTarget = reservationsUrl ? ' target="_blank" rel="noopener"' : '';
+
+    return items.map(item => {
+        const tagHtml = item.tag
+            ? `<span class="event-page-card__tag">${escHtml(item.tag)}</span>`
+            : '';
+
+        const metaItems = [
+            item.date  ? `<span class="event-page-card__meta-item"><i data-lucide="calendar"></i>${escHtml(item.date)}</span>`  : '',
+            item.time  ? `<span class="event-page-card__meta-item"><i data-lucide="clock"></i>${escHtml(item.time)}</span>`    : '',
+            item.price ? `<span class="event-page-card__meta-item"><i data-lucide="ticket"></i>${escHtml(item.price)}</span>` : '',
+        ].filter(Boolean).join('');
+
+        const metaHtml = metaItems
+            ? `<div class="event-page-card__meta">${metaItems}</div>`
+            : '';
+
+        return `<article class="event-page-card">
+  <div class="event-page-card__date-badge">
+    <span class="event-page-card__day">${escHtml(item.day || '')}</span>
+    <span class="event-page-card__month">${escHtml(item.month || '')}</span>
+  </div>
+  <div class="event-page-card__body">
+    <div class="event-page-card__top">
+      <h2 class="event-page-card__title">${escHtml(item.title || '')}</h2>
+      ${tagHtml}
+    </div>
+    ${metaHtml}
+    <p class="event-page-card__desc">${escHtml(item.desc || '')}</p>
+    <a class="btn btn--primary" href="${escAttr(ctaHref)}"${ctaTarget}>Reserve Your Seat</a>
+  </div>
+</article>`;
+    }).join('\n');
+}
+
+// ── Menu rendering helpers ─────────────────────────────────────────────────────
+
 function renderMenuTabs(menus) {
     if (!menus || menus.length === 0) return '';
     return menus.map((menu, idx) => {
@@ -345,11 +427,6 @@ function renderMenuTabs(menus) {
     }).join('');
 }
 
-/**
- * Render all menu panels. Each panel contains one or more named sections
- * (e.g. Starters, Mains) rendered as sub-groups within the panel.
- * First panel is active by default.
- */
 function renderMenuPanels(menus) {
     if (!menus || menus.length === 0) return '';
     return menus.map((menu, idx) => {
@@ -360,17 +437,12 @@ function renderMenuPanels(menus) {
     }).join('');
 }
 
-/**
- * Render a single named section (e.g. "Starters") within a menu panel.
- * Uses a section heading then the standard menu-grid of items.
- */
 function renderMenuSection(sec) {
     const nameHtml = sec.name
         ? `<h2 class="menu-section__heading">${escHtml(sec.name)}</h2>`
         : '';
 
     const items = (sec.items || []).map(item => {
-        // Choose tag modifier class based on common tag values
         const tagClass = menuTagClass(item.tag || '');
         const tagHtml  = item.tag
             ? `<div class="menu-item__tags"><span class="menu-tag${tagClass}">${escHtml(item.tag)}</span></div>`
@@ -393,11 +465,6 @@ function renderMenuSection(sec) {
     return `<div class="menu-section-group">${nameHtml}${gridHtml}</div>`;
 }
 
-/**
- * Return an additional CSS class for certain tag values that warrant
- * the darker/highlighted treatment (Signature, House Specialty, Chef's Choice,
- * House Cocktail, By the Bottle).
- */
 function menuTagClass(tag) {
     const dark = ['Signature', 'House Specialty', "Chef's Choice", 'House Cocktail', 'By the Bottle', 'Selection'];
     return dark.includes(tag) ? ' menu-tag--dark' : '';

@@ -649,7 +649,7 @@ h1, h2, h3, h4 {
   border-top: 1px solid var(--border-card);
 }
 
-/* ── Events Section ─────────────────────────────────────── */
+/* ── Events Section (home page) ─────────────────────────── */
 .events-section { padding: 96px 0; }
 
 .events-grid {
@@ -724,6 +724,231 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   color: var(--accent-primary);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ── Events Page (/events) ─────────────────────────────────
+   ═══════════════════════════════════════════════════════════ */
+
+/* Outer section wrapper */
+.events-page-section {
+  padding: 72px 0 96px;
+}
+
+/* 2-column grid on desktop, 1 column on mobile */
+.events-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── Individual event card ── */
+.event-page-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    transform     var(--transition),
+    box-shadow    var(--transition);
+
+  /* Fade-in starting state */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.event-page-card.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.event-page-card:hover {
+  border-color: var(--border-card-hover);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Accent-coloured date badge strip across the top */
+.event-page-card__date-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 20px 28px 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 148, 58, 0.14) 0%,
+    rgba(201, 148, 58, 0.04) 100%
+  );
+  border-bottom: 1px solid var(--border-card);
+}
+
+.event-page-card__day {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.event-page-card__month {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Card body */
+.event-page-card__body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+/* Title row + tag pill */
+.event-page-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.event-page-card__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.event-page-card__tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid var(--accent-primary);
+  border-radius: 100px;
+  color: var(--accent-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 3px;
+}
+
+/* Meta row: date string, time, price */
+.event-page-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.event-page-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.event-page-card__meta-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+/* Description */
+.event-page-card__desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+/* CTA button — flush to card bottom */
+.event-page-card__body .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ── Private Events CTA section (below listing) ── */
+.events-private-cta {
+  padding: 96px 0;
+}
+
+.events-private-cta__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.events-private-cta__sub {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.events-private-cta__badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.events-private-cta__badge {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  transition: border-color var(--transition), transform var(--transition);
+
+  /* Fade-in starting state */
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.events-private-cta__badge.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.events-private-cta__badge:hover {
+  border-color: var(--border-card-hover);
+  transform: translateY(-3px);
+}
+
+.events-private-cta__badge svg {
+  width: 28px;
+  height: 28px;
+  color: var(--accent-primary);
+}
+
+.events-private-cta__badge span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════ */
 
 /* ── Catering Section ───────────────────────────────────── */
 .catering-section { padding: 96px 0; }
@@ -1319,6 +1544,16 @@ h1, h2, h3, h4 {
   .catering-badge:nth-child(3) { grid-column: auto; max-width: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .contact-layout { grid-template-columns: 1fr; }
+
+  .events-private-cta__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* Events page: drop to single column at tablet */
+  .events-page-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1369,6 +1604,14 @@ h1, h2, h3, h4 {
   .reservation-cta { padding: 80px 0; }
 
   .events-grid { grid-template-columns: 1fr; }
+
+  /* Events page */
+  .events-page-section { padding: 48px 0 72px; }
+  .events-page-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  .events-private-cta { padding: 64px 0; }
+  .events-private-cta__inner { gap: 40px; }
+  .events-private-cta__badges { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -1395,4 +1638,11 @@ h1, h2, h3, h4 {
   .page-hero__title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
 
   .contact-form-card { padding: 24px 16px; }
+
+  /* Events page */
+  .event-page-card__top { flex-direction: column; gap: 8px; }
+  .event-page-card__tag { align-self: flex-start; }
+  .event-page-card__body .btn { width: 100%; justify-content: center; }
+
+  .events-private-cta__badges { grid-template-columns: 1fr 1fr; }
 }
