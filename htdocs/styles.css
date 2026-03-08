@@ -150,7 +150,7 @@ h1, h2, h3, h4 {
   z-index: 100;
   height: var(--header-h);
   transition: background var(--transition), box-shadow var(--transition);
-  background: var(--bg);
+  background: transparent;
 }
 
 .site-header--scrolled,
@@ -341,11 +341,7 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
   margin-bottom: 24px;
   font-style: italic;
-  background-color: var(--bg);
-  display: inline;
-  padding: 0 8px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
 }
 
 .hero__subtext {
