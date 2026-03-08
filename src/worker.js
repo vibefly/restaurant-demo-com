@@ -106,7 +106,14 @@ async function renderPage(env, url) {
             `<meta property="og:description" content="${escAttr(description)}">`,
         ].join('\n');
 
-        const inlineScripts = `<script>window.__BUSINESS=${JSON.stringify(biz)};window.__FORM_CONFIG=${JSON.stringify(formCfg)};</script>`;
+        // Load images.json if it exists
+        let siteImages = [];
+        try {
+            const imagesRes = await env.ASSETS.fetch(new Request(new URL('/images.json', url.origin).href));
+            if (imagesRes.ok) siteImages = await imagesRes.json();
+        } catch { /* no images yet */ }
+
+        const inlineScripts = `<script>window.__BUSINESS=${JSON.stringify(biz)};window.__FORM_CONFIG=${JSON.stringify(formCfg)};window.__IMAGES=${JSON.stringify(siteImages)};</script>`;
 
         let modifiedHtml = html;
         modifiedHtml = modifiedHtml.replace(/<title>[^<]*<\/title>/, `<title>${escHtml(titleText)}</title>`);
