@@ -341,16 +341,16 @@ h1, h2, h3, h4 {
   color: #000000;
   margin-bottom: 24px;
   font-style: italic;
-  text-shadow: 0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.9), 0 0 100px rgba(255,255,255,0.7);
+  text-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff, 0 0 120px rgba(255,255,255,0.8);
 }
 
 .hero__subtext {
   font-size: 1.15rem;
   color: #000000;
-  font-weight: 300;
+  font-weight: 600;
   margin-bottom: 48px;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.9), 0 0 70px rgba(255,255,255,0.7);
+  text-shadow: 0 0 15px #fff, 0 0 30px #fff, 0 0 60px #fff, 0 0 90px rgba(255,255,255,0.8);
 }
 
 .hero__cta-group {
