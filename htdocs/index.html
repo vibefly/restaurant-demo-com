@@ -32,6 +32,7 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <div id="hero-images-slot" class="kb-container"></div>
     <div class="hero__bg-overlay"></div>
     <div class="hero__content container">
       <p class="hero__label" data-content="hero.label">Est. 2019</p>
@@ -57,7 +58,7 @@
     <div class="container">
       <div class="chef-layout">
         <div class="chef-image-col">
-          <div class="chef-image-frame">
+          <div class="chef-image-frame" id="chef-image-slot">
             <div class="chef-image-placeholder">
               <i data-lucide="chef-hat"></i>
             </div>
@@ -212,6 +213,7 @@
     </div>
   </footer>
 
+  <script src="/js/images.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     lucide.createIcons();
