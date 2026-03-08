@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header site-header--solid" id="top">
+    <div class="header-inner container">
+      <a class="logo" href="/">
+        <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul data-content-nav></ul>
+      </nav>
+      <a class="header-cta btn btn--primary" href="/contact" data-content="hero.ctaText">Reserve</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <p class="hero__label" data-content="pages.menu.label">Our Offerings</p>
+      <h1 class="page-hero__title" data-content="pages.menu.title">The Menu</h1>
+      <p class="page-hero__sub" data-content="pages.menu.subtitle">Seasonal ingredients. Timeless technique.</p>
+    </div>
+  </section>
+
+  <!-- MENU TABS -->
+  <section class="menu-section">
+    <div class="container">
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" role="tab" data-tab="starters">Starters</button>
+        <button class="menu-tab" role="tab" data-tab="mains">Mains</button>
+        <button class="menu-tab" role="tab" data-tab="desserts">Desserts</button>
+        <button class="menu-tab" role="tab" data-tab="drinks">Drinks</button>
+      </div>
+
+      <!-- Starters -->
+      <div class="menu-panel active" id="tab-starters">
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.starters.0.name">Burrata &amp; Heirloom Tomato</h3>
+              <span class="menu-item__price" data-content="pages.menu.starters.0.price">$18</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.starters.0.desc">Creamy burrata, charred heirloom tomatoes, basil oil, sea salt, grilled sourdough</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.starters.0.tag">Vegetarian</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.starters.1.name">Scallop Crudo</h3>
+              <span class="menu-item__price" data-content="pages.menu.starters.1.price">$24</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.starters.1.desc">Thinly sliced dry-packed scallops, yuzu kosho, pickled cucumber, micro cilantro</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.starters.1.tag">Chef's Choice</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.starters.2.name">Duck Liver Parfait</h3>
+              <span class="menu-item__price" data-content="pages.menu.starters.2.price">$21</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.starters.2.desc">Smooth duck liver parfait, sour cherry jam, toasted brioche, cornichons</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.starters.2.tag">Signature</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.starters.3.name">Roasted Beet Salad</h3>
+              <span class="menu-item__price" data-content="pages.menu.starters.3.price">$16</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.starters.3.desc">Gold &amp; red beets, whipped ricotta, candied walnuts, sherry vinaigrette, fresh herbs</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.starters.3.tag">Vegetarian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mains -->
+      <div class="menu-panel" id="tab-mains">
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.mains.0.name">Dry-Aged Ribeye</h3>
+              <span class="menu-item__price" data-content="pages.menu.mains.0.price">$58</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.mains.0.desc">14oz 45-day dry-aged ribeye, bone marrow butter, truffle jus, roasted potato galette</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.mains.0.tag">House Specialty</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.mains.1.name">Pan-Seared Halibut</h3>
+              <span class="menu-item__price" data-content="pages.menu.mains.1.price">$42</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.mains.1.desc">Wild halibut, saffron beurre blanc, spring pea purée, crispy capers, lemon zest</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.mains.1.tag">Gluten-Free</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.mains.2.name">Heritage Pork Chop</h3>
+              <span class="menu-item__price" data-content="pages.menu.mains.2.price">$38</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.mains.2.desc">Bone-in Berkshire pork, apple &amp; fennel mostarda, grilled radicchio, polenta cake</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.mains.2.tag">Chef's Choice</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.mains.3.name">Wild Mushroom Risotto</h3>
+              <span class="menu-item__price" data-content="pages.menu.mains.3.price">$32</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.mains.3.desc">Arborio rice, forest mushroom medley, aged parmesan, truffle oil, fresh thyme</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.mains.3.tag">Vegetarian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div class="menu-panel" id="tab-desserts">
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.desserts.0.name">Valrhona Chocolate Fondant</h3>
+              <span class="menu-item__price" data-content="pages.menu.desserts.0.price">$16</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.desserts.0.desc">Warm dark chocolate fondant, salted caramel core, Tahitian vanilla gelato</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.desserts.0.tag">Signature</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.desserts.1.name">Crème Brûlée</h3>
+              <span class="menu-item__price" data-content="pages.menu.desserts.1.price">$14</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.desserts.1.desc">Classic vanilla custard, caramelized sugar crust, fresh raspberries, mint</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.desserts.1.tag">Classic</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.desserts.2.name">Seasonal Tart</h3>
+              <span class="menu-item__price" data-content="pages.menu.desserts.2.price">$13</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.desserts.2.desc">Buttery shortcrust, seasonal fruit compote, mascarpone cream, toasted almonds</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag" data-content="pages.menu.desserts.2.tag">Seasonal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div class="menu-panel" id="tab-drinks">
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.drinks.0.name">Ember Old Fashioned</h3>
+              <span class="menu-item__price" data-content="pages.menu.drinks.0.price">$18</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.drinks.0.desc">Smoke-infused bourbon, black walnut bitters, orange peel, charred oak</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.drinks.0.tag">House Cocktail</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.drinks.1.name">Saffron Negroni</h3>
+              <span class="menu-item__price" data-content="pages.menu.drinks.1.price">$17</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.drinks.1.desc">Saffron-infused gin, Campari, sweet vermouth, orange bitters</p>
+            <div class="menu-item__tags">
+              <span class="menu-tag menu-tag--dark" data-content="pages.menu.drinks.1.tag">House Cocktail</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <h3 class="menu-item__name" data-content="pages.menu.drinks.2.name">Curated Wine List</h3>
+              <span class="menu-item__price" data-content="pages.menu.drinks.2.price">from $14</span>
+            </div>
+            <p class="menu-item__desc" data-content="pages.menu.drinks.2.desc">Old and new world selections. Ask your server for tonight's by-the-glass offerings.</p>
+            <div class="menu-item__tags"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-notice">
+        <p data-content="pages.menu.notice">Menu changes seasonally. Please inform your server of any dietary requirements or allergies. Consuming raw or undercooked items may increase your risk of foodborne illness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="logo logo--footer" href="/">
+          <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+        </a>
+        <p class="footer-about" data-content="footer.about">An intimate dining experience where craft and warmth come together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Navigate</h4>
+        <ul class="footer-links" data-content-nav></ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Hours</h4>
+        <div class="footer-hours" data-content-list="contact.hours"></div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="phone"></i><a data-content-phone href="tel:+15551234567"></a></li>
+          <li><i data-lucide="mail"></i><a data-content-email href="mailto:info@example.com"></a></li>
+          <li><i data-lucide="map-pin"></i><span data-content="business.address"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p data-content-copyright>© 2024 Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('site-nav--open');
+        toggle.classList.toggle('nav-toggle--open');
+      });
+    }
+
+    // Menu tabs
+    const tabs = document.querySelectorAll('.menu-tab');
+    const panels = document.querySelectorAll('.menu-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById('tab-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

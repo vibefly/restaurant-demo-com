@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header site-header--solid" id="top">
+    <div class="header-inner container">
+      <a class="logo" href="/">
+        <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul data-content-nav></ul>
+      </nav>
+      <a class="header-cta btn btn--primary" href="/contact" data-content="hero.ctaText">Reserve</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <p class="hero__label" data-content="pages.contact.label">Get in Touch</p>
+      <h1 class="page-hero__title" data-content="pages.contact.title">Reservations &amp; Inquiries</h1>
+      <p class="page-hero__sub" data-content="pages.contact.subtitle">We'd love to host you. Reach out to reserve your table or ask about private events.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- FORM -->
+        <div class="contact-form-col">
+          <div class="contact-form-card" id="contact-form-wrapper">
+            <h2 class="contact-form__heading" data-content="contact.heading">Make a Reservation</h2>
+            <p class="contact-form__sub" data-content="contact.subheading">Fill out the form below and we'll confirm your reservation within 24 hours.</p>
+
+            <form class="contact-form" id="contact-form" novalidate>
+              <div id="form-fields-placeholder"></div>
+              <button type="submit" class="btn btn--primary btn--block">Send Reservation Request</button>
+            </form>
+
+            <!-- Thank you state -->
+            <div class="form-thankyou" id="form-thankyou" hidden>
+              <div class="form-thankyou__icon"><i data-lucide="check-circle"></i></div>
+              <h3 data-content="form.thankYouHeading">Reservation Received!</h3>
+              <p data-content="form.thankYouMessage">Thank you! We'll be in touch shortly to confirm your reservation.</p>
+              <p class="form-thankyou__sub" data-content="form.thankYouSubtext">Check your email for a confirmation message.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info-col">
+          <div class="contact-info-block">
+            <h3 class="contact-info__heading">Find Us</h3>
+            <div class="contact-info-item">
+              <i data-lucide="map-pin"></i>
+              <div>
+                <strong>Address</strong>
+                <span data-content="business.address">123 Amber Lane, Downtown</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i data-lucide="phone"></i>
+              <div>
+                <strong>Phone</strong>
+                <a data-content-phone href="tel:+15551234567"></a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i data-lucide="mail"></i>
+              <div>
+                <strong>Email</strong>
+                <a data-content-email href="mailto:info@example.com"></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-block">
+            <h3 class="contact-info__heading">Hours</h3>
+            <div class="contact-hours" data-content-list="contact.hours"></div>
+          </div>
+
+          <div class="contact-info-block">
+            <h3 class="contact-info__heading">Private Events</h3>
+            <p class="contact-private-text" data-content="pages.contact.privateText">Interested in hosting a private dinner, corporate event, or special celebration? Our events team is here to create a bespoke experience for you.</p>
+            <a class="btn btn--outline" href="/#catering" data-content="pages.contact.privateCtaText">Explore Catering</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="logo logo--footer" href="/">
+          <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+        </a>
+        <p class="footer-about" data-content="footer.about">An intimate dining experience where craft and warmth come together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Navigate</h4>
+        <ul class="footer-links" data-content-nav></ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Hours</h4>
+        <div class="footer-hours" data-content-list="contact.hours"></div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="phone"></i><a data-content-phone href="tel:+15551234567"></a></li>
+          <li><i data-lucide="mail"></i><a data-content-email href="mailto:info@example.com"></a></li>
+          <li><i data-lucide="map-pin"></i><span data-content="business.address"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p data-content-copyright>© 2024 Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('site-nav--open');
+        toggle.classList.toggle('nav-toggle--open');
+      });
+    }
+
+    // Form submission
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('form-thankyou');
+    const formWrapper = document.getElementById('contact-form-wrapper');
+    const cfg = window.__FORM_CONFIG || {};
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch('/api/submit', { method: 'POST', body: data });
+          const json = await res.json();
+
+          if (json.ok) {
+            form.style.display = 'none';
+            if (thankYou) {
+              thankYou.hidden = false;
+              lucide.createIcons();
+            }
+          } else {
+            btn.disabled = false;
+            btn.textContent = cfg.submitLabel || 'Send Reservation Request';
+            alert(json.error || cfg.errorMessage || 'Something went wrong. Please try again.');
+          }
+        } catch {
+          btn.disabled = false;
+          btn.textContent = cfg.submitLabel || 'Send Reservation Request';
+          alert(cfg.errorMessage || 'Network error. Please try again.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
