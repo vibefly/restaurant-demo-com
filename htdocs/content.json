@@ -4,46 +4,55 @@
     "description": "An intimate dining experience featuring artfully crafted cuisine with warm amber tones and a moody, welcoming atmosphere."
   },
   "theme": {
-    "bg":                "#1a1410",
-    "bgAlt":             "#211c16",
-    "bgDark":            "#0f0c09",
-    "accentPrimary":     "#c9943a",
-    "accentSecondary":   "#e8b96a",
-    "accentLight":       "#f5dfa8",
-    "textPrimary":       "#f0e8dc",
-    "textSecondary":     "#a89880",
-    "heroStart":         "#0f0c09",
-    "heroMid":           "#1a1410cc",
-    "heroEnd":           "#1a141000",
-    "star":              "#c9943a",
-    "borderCard":        "#3a2e22",
-    "borderCardHover":   "#c9943a"
+    "bg": "#1a1410",
+    "bgAlt": "#211c16",
+    "bgDark": "#0f0c09",
+    "accentPrimary": "#c9943a",
+    "accentSecondary": "#e8b96a",
+    "accentLight": "#f5dfa8",
+    "textPrimary": "#f0e8dc",
+    "textSecondary": "#a89880",
+    "heroStart": "#0f0c09",
+    "heroMid": "#1a1410cc",
+    "heroEnd": "#1a141000",
+    "star": "#c9943a",
+    "borderCard": "#3a2e22",
+    "borderCardHover": "#c9943a"
   },
   "logo": {
     "name": "Ember",
     "tld": " & Oak"
   },
   "nav": [
-    { "label": "Home",    "href": "/" },
-    { "label": "Menu",    "href": "/menu" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Menu",
+      "href": "/menu"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
   "business": {
-    "name":      "Ember & Oak",
-    "phone":     "(555) 210-4830",
+    "name": "Ember & Oak",
+    "phone": "(555) 210-4830",
     "phoneHref": "tel:+15552104830",
-    "email":     "hello@emberandoak.com",
-    "address":   "18 Harlow Street, The Merchant Quarter",
-    "year":      "2019"
+    "email": "hello@emberandoak.com",
+    "address": "18 Harlow Street, The Merchant Quarter",
+    "year": "2019"
   },
   "hero": {
-    "label":              "Est. 2019",
-    "title":              "Where Every Meal Tells a Story",
-    "subtext":            "Artfully crafted cuisine in an intimate, atmospheric setting",
-    "ctaText":            "Reserve a Table",
-    "ctaHref":            "/contact",
-    "ctaSecondaryText":   "View the Menu",
-    "ctaSecondaryHref":   "/menu"
+    "label": "Est. 2019",
+    "title": "Where Every Meal Tells a Story",
+    "subtext": "Artfully crafted cuisine in an intimate, atmospheric setting",
+    "ctaText": "Reserve a Table",
+    "ctaHref": "/contact",
+    "ctaSecondaryText": "View the Menu",
+    "ctaSecondaryHref": "/menu"
   },
   "pages": {
     "home": {
@@ -106,107 +115,175 @@
         }
       ],
       "chef": {
-        "label":   "Meet the Chef",
+        "label": "Meet the Chef",
         "heading": "A Culinary Vision",
-        "bio":     "Chef Marco Vitale brings over two decades of passion and precision to every dish, drawing inspiration from classical French technique, Italian heritage, and bold global flavors discovered through years of travel.",
-        "bio2":    "Every plate is a personal statement — a commitment to honest ingredients elevated by artistry and deep respect for the craft.",
-        "name":    "Chef Marco Vitale"
+        "bio": "Chef Marco Vitale brings over two decades of passion and precision to every dish, drawing inspiration from classical French technique, Italian heritage, and bold global flavors discovered through years of travel.",
+        "bio2": "Every plate is a personal statement — a commitment to honest ingredients elevated by artistry and deep respect for the craft.",
+        "name": "Chef Marco Vitale"
       },
       "events": {
-        "label":      "Special Occasions",
-        "heading":    "Upcoming Events",
+        "label": "Special Occasions",
+        "heading": "Upcoming Events",
         "subheading": "Join us for exclusive dining experiences and seasonal celebrations",
         "items": [
           {
-            "day":   "15",
+            "day": "15",
             "month": "FRI",
             "title": "Wine Pairing Dinner",
-            "desc":  "A curated five-course journey with sommelier-selected wines from boutique vineyards.",
-            "tag":   "Limited Seating"
+            "desc": "A curated five-course journey with sommelier-selected wines from boutique vineyards.",
+            "tag": "Limited Seating"
           },
           {
-            "day":   "22",
+            "day": "22",
             "month": "SAT",
             "title": "Chef's Table Evening",
-            "desc":  "An exclusive eight-seat tasting menu cooked and presented personally by our head chef.",
-            "tag":   "8 Seats Only"
+            "desc": "An exclusive eight-seat tasting menu cooked and presented personally by our head chef.",
+            "tag": "8 Seats Only"
           },
           {
-            "day":   "29",
+            "day": "29",
             "month": "SAT",
             "title": "Jazz & Tapas Night",
-            "desc":  "Live jazz quartet sets the mood for an evening of shareable small plates and craft cocktails.",
-            "tag":   "Open Seating"
+            "desc": "Live jazz quartet sets the mood for an evening of shareable small plates and craft cocktails.",
+            "tag": "Open Seating"
           }
         ]
       },
       "catering": {
-        "label":       "Private Events",
-        "heading":     "Catering & Private Dining",
-        "desc":        "Whether it's an intimate gathering or a grand celebration, our catering team brings the full Ember & Oak experience to your venue — with the same dedication to quality, craft, and warm hospitality.",
+        "label": "Private Events",
+        "heading": "Catering & Private Dining",
+        "desc": "Whether it's an intimate gathering or a grand celebration, our catering team brings the full Ember & Oak experience to your venue — with the same dedication to quality, craft, and warm hospitality.",
         "features": [
           "Corporate events & team dinners",
           "Wedding receptions & rehearsal dinners",
           "Private venue buyouts",
           "Custom menus & dietary accommodations"
         ],
-        "cta":         "Inquire About Catering",
-        "stat1Num":    "200+",
-        "stat1Label":  "Events Catered",
-        "stat2Num":    "4.9★",
-        "stat2Label":  "Average Rating",
-        "stat3Num":    "12+",
-        "stat3Label":  "Years Experience"
+        "cta": "Inquire About Catering",
+        "stat1Num": "200+",
+        "stat1Label": "Events Catered",
+        "stat2Num": "4.9★",
+        "stat2Label": "Average Rating",
+        "stat3Num": "12+",
+        "stat3Label": "Years Experience"
       },
       "reservation": {
-        "label":   "Book Your Table",
+        "label": "Book Your Table",
         "heading": "Join Us for an Unforgettable Evening",
         "subtext": "We recommend reservations, especially on weekends. Walk-ins are always welcome based on availability.",
         "ctaText": "Make a Reservation"
       }
     },
     "menu": {
-      "title":       "Menu — Ember & Oak",
+      "title": "The Menu",
       "description": "Explore our seasonal menu of artfully crafted starters, mains, desserts, and handcrafted cocktails.",
-      "label":    "Our Offerings",
-      "title":    "The Menu",
+      "label": "Our Offerings",
       "subtitle": "Seasonal ingredients. Timeless technique.",
-      "notice":   "Menu changes seasonally. Please inform your server of any dietary requirements or allergies. Consuming raw or undercooked items may increase your risk of foodborne illness.",
+      "notice": "Menu changes seasonally. Please inform your server of any dietary requirements or allergies. Consuming raw or undercooked items may increase your risk of foodborne illness.",
       "starters": [
-        { "name": "Burrata & Heirloom Tomato",  "price": "$18", "desc": "Creamy burrata, charred heirloom tomatoes, basil oil, sea salt, grilled sourdough",           "tag": "Vegetarian"    },
-        { "name": "Scallop Crudo",               "price": "$24", "desc": "Thinly sliced dry-packed scallops, yuzu kosho, pickled cucumber, micro cilantro",              "tag": "Chef's Choice" },
-        { "name": "Duck Liver Parfait",          "price": "$21", "desc": "Smooth duck liver parfait, sour cherry jam, toasted brioche, cornichons",                      "tag": "Signature"     },
-        { "name": "Roasted Beet Salad",          "price": "$16", "desc": "Gold & red beets, whipped ricotta, candied walnuts, sherry vinaigrette, fresh herbs",          "tag": "Vegetarian"    }
+        {
+          "name": "Burrata & Heirloom Tomato",
+          "price": "$18",
+          "desc": "Creamy burrata, charred heirloom tomatoes, basil oil, sea salt, grilled sourdough",
+          "tag": "Vegetarian"
+        },
+        {
+          "name": "Scallop Crudo",
+          "price": "$24",
+          "desc": "Thinly sliced dry-packed scallops, yuzu kosho, pickled cucumber, micro cilantro",
+          "tag": "Chef's Choice"
+        },
+        {
+          "name": "Duck Liver Parfait",
+          "price": "$21",
+          "desc": "Smooth duck liver parfait, sour cherry jam, toasted brioche, cornichons",
+          "tag": "Signature"
+        },
+        {
+          "name": "Roasted Beet Salad",
+          "price": "$16",
+          "desc": "Gold & red beets, whipped ricotta, candied walnuts, sherry vinaigrette, fresh herbs",
+          "tag": "Vegetarian"
+        }
       ],
       "mains": [
-        { "name": "Dry-Aged Ribeye",           "price": "$58", "desc": "14oz 45-day dry-aged ribeye, bone marrow butter, truffle jus, roasted potato galette",       "tag": "House Specialty" },
-        { "name": "Pan-Seared Halibut",        "price": "$42", "desc": "Wild halibut, saffron beurre blanc, spring pea purée, crispy capers, lemon zest",            "tag": "Gluten-Free"     },
-        { "name": "Heritage Pork Chop",        "price": "$38", "desc": "Bone-in Berkshire pork, apple & fennel mostarda, grilled radicchio, polenta cake",           "tag": "Chef's Choice"   },
-        { "name": "Wild Mushroom Risotto",     "price": "$32", "desc": "Arborio rice, forest mushroom medley, aged parmesan, truffle oil, fresh thyme",              "tag": "Vegetarian"      }
+        {
+          "name": "Dry-Aged Ribeye",
+          "price": "$58",
+          "desc": "14oz 45-day dry-aged ribeye, bone marrow butter, truffle jus, roasted potato galette",
+          "tag": "House Specialty"
+        },
+        {
+          "name": "Pan-Seared Halibut",
+          "price": "$42",
+          "desc": "Wild halibut, saffron beurre blanc, spring pea purée, crispy capers, lemon zest",
+          "tag": "Gluten-Free"
+        },
+        {
+          "name": "Heritage Pork Chop",
+          "price": "$38",
+          "desc": "Bone-in Berkshire pork, apple & fennel mostarda, grilled radicchio, polenta cake",
+          "tag": "Chef's Choice"
+        },
+        {
+          "name": "Wild Mushroom Risotto",
+          "price": "$32",
+          "desc": "Arborio rice, forest mushroom medley, aged parmesan, truffle oil, fresh thyme",
+          "tag": "Vegetarian"
+        }
       ],
       "desserts": [
-        { "name": "Valrhona Chocolate Fondant", "price": "$16", "desc": "Warm dark chocolate fondant, salted caramel core, Tahitian vanilla gelato",                "tag": "Signature" },
-        { "name": "Crème Brûlée",               "price": "$14", "desc": "Classic vanilla custard, caramelized sugar crust, fresh raspberries, mint",                "tag": "Classic"   },
-        { "name": "Seasonal Tart",              "price": "$13", "desc": "Buttery shortcrust, seasonal fruit compote, mascarpone cream, toasted almonds",            "tag": "Seasonal"  }
+        {
+          "name": "Valrhona Chocolate Fondant",
+          "price": "$16",
+          "desc": "Warm dark chocolate fondant, salted caramel core, Tahitian vanilla gelato",
+          "tag": "Signature"
+        },
+        {
+          "name": "Crème Brûlée",
+          "price": "$14",
+          "desc": "Classic vanilla custard, caramelized sugar crust, fresh raspberries, mint",
+          "tag": "Classic"
+        },
+        {
+          "name": "Seasonal Tart",
+          "price": "$13",
+          "desc": "Buttery shortcrust, seasonal fruit compote, mascarpone cream, toasted almonds",
+          "tag": "Seasonal"
+        }
       ],
       "drinks": [
-        { "name": "Ember Old Fashioned", "price": "$18",      "desc": "Smoke-infused bourbon, black walnut bitters, orange peel, charred oak",           "tag": "House Cocktail" },
-        { "name": "Saffron Negroni",     "price": "$17",      "desc": "Saffron-infused gin, Campari, sweet vermouth, orange bitters",                    "tag": "House Cocktail" },
-        { "name": "Curated Wine List",   "price": "from $14", "desc": "Old and new world selections. Ask your server for tonight's by-the-glass offerings.", "tag": "" }
+        {
+          "name": "Ember Old Fashioned",
+          "price": "$18",
+          "desc": "Smoke-infused bourbon, black walnut bitters, orange peel, charred oak",
+          "tag": "House Cocktail"
+        },
+        {
+          "name": "Saffron Negroni",
+          "price": "$17",
+          "desc": "Saffron-infused gin, Campari, sweet vermouth, orange bitters",
+          "tag": "House Cocktail"
+        },
+        {
+          "name": "Curated Wine List",
+          "price": "from $14",
+          "desc": "Old and new world selections. Ask your server for tonight's by-the-glass offerings.",
+          "tag": ""
+        }
       ]
     },
     "contact": {
-      "title":          "Contact — Ember & Oak",
-      "description":    "Reserve your table or inquire about private dining and catering at Ember & Oak.",
-      "label":          "Get in Touch",
-      "title":          "Reservations & Inquiries",
-      "subtitle":       "We'd love to host you. Reach out to reserve your table or ask about private events.",
-      "privateText":    "Interested in hosting a private dinner, corporate event, or special celebration? Our events team is here to create a bespoke experience for you.",
+      "title": "Reservations & Inquiries",
+      "description": "Reserve your table or inquire about private dining and catering at Ember & Oak.",
+      "label": "Get in Touch",
+      "subtitle": "We'd love to host you. Reach out to reserve your table or ask about private events.",
+      "privateText": "Interested in hosting a private dinner, corporate event, or special celebration? Our events team is here to create a bespoke experience for you.",
       "privateCtaText": "Explore Catering"
     }
   },
   "contact": {
-    "heading":    "Make a Reservation",
+    "heading": "Make a Reservation",
     "subheading": "Fill out the form below and we'll confirm your reservation within 24 hours.",
     "hours": [
       "Tuesday – Thursday: 5pm – 10pm",
@@ -224,49 +301,134 @@
   },
   "form": {
     "fields": [
-      { "type": "text",     "name": "name",        "label": "Full Name",          "placeholder": "Your name",              "required": true  },
-      { "type": "email",    "name": "email",        "label": "Email Address",      "placeholder": "your@email.com",         "required": true  },
-      { "type": "tel",      "name": "phone",        "label": "Phone Number",       "placeholder": "(555) 000-0000",         "required": false },
-      { "type": "select",   "name": "party_size",   "label": "Party Size",         "placeholder": "Select party size",      "required": true,
+      {
+        "type": "text",
+        "name": "name",
+        "label": "Full Name",
+        "placeholder": "Your name",
+        "required": true
+      },
+      {
+        "type": "email",
+        "name": "email",
+        "label": "Email Address",
+        "placeholder": "your@email.com",
+        "required": true
+      },
+      {
+        "type": "tel",
+        "name": "phone",
+        "label": "Phone Number",
+        "placeholder": "(555) 000-0000",
+        "required": false
+      },
+      {
+        "type": "select",
+        "name": "party_size",
+        "label": "Party Size",
+        "placeholder": "Select party size",
+        "required": true,
         "options": [
-          { "value": "1",  "label": "1 Guest"   },
-          { "value": "2",  "label": "2 Guests"  },
-          { "value": "3",  "label": "3 Guests"  },
-          { "value": "4",  "label": "4 Guests"  },
-          { "value": "5",  "label": "5 Guests"  },
-          { "value": "6+", "label": "6+ Guests" }
+          {
+            "value": "1",
+            "label": "1 Guest"
+          },
+          {
+            "value": "2",
+            "label": "2 Guests"
+          },
+          {
+            "value": "3",
+            "label": "3 Guests"
+          },
+          {
+            "value": "4",
+            "label": "4 Guests"
+          },
+          {
+            "value": "5",
+            "label": "5 Guests"
+          },
+          {
+            "value": "6+",
+            "label": "6+ Guests"
+          }
         ]
       },
-      { "type": "select",   "name": "preferred_day",  "label": "Preferred Day",   "placeholder": "Select a day",           "required": true,
+      {
+        "type": "select",
+        "name": "preferred_day",
+        "label": "Preferred Day",
+        "placeholder": "Select a day",
+        "required": true,
         "options": [
-          { "value": "tuesday",   "label": "Tuesday"   },
-          { "value": "wednesday", "label": "Wednesday" },
-          { "value": "thursday",  "label": "Thursday"  },
-          { "value": "friday",    "label": "Friday"    },
-          { "value": "saturday",  "label": "Saturday"  },
-          { "value": "sunday",    "label": "Sunday"    }
+          {
+            "value": "tuesday",
+            "label": "Tuesday"
+          },
+          {
+            "value": "wednesday",
+            "label": "Wednesday"
+          },
+          {
+            "value": "thursday",
+            "label": "Thursday"
+          },
+          {
+            "value": "friday",
+            "label": "Friday"
+          },
+          {
+            "value": "saturday",
+            "label": "Saturday"
+          },
+          {
+            "value": "sunday",
+            "label": "Sunday"
+          }
         ]
       },
-      { "type": "select",   "name": "preferred_time", "label": "Preferred Time",  "placeholder": "Select a time",          "required": true,
+      {
+        "type": "select",
+        "name": "preferred_time",
+        "label": "Preferred Time",
+        "placeholder": "Select a time",
+        "required": true,
         "options": [
-          { "value": "early",  "label": "Early (5pm – 6:30pm)"  },
-          { "value": "prime",  "label": "Prime (7pm – 8:30pm)"  },
-          { "value": "late",   "label": "Late (9pm+)"           }
+          {
+            "value": "early",
+            "label": "Early (5pm – 6:30pm)"
+          },
+          {
+            "value": "prime",
+            "label": "Prime (7pm – 8:30pm)"
+          },
+          {
+            "value": "late",
+            "label": "Late (9pm+)"
+          }
         ]
       },
-      { "type": "textarea", "name": "message",      "label": "Special Requests",   "placeholder": "Dietary needs, celebration, seating preference…", "required": false, "rows": 4 }
+      {
+        "type": "textarea",
+        "name": "message",
+        "label": "Special Requests",
+        "placeholder": "Dietary needs, celebration, seating preference…",
+        "required": false,
+        "rows": 4
+      }
     ],
-    "submitLabel":      "Send Reservation Request",
-    "turnstileSiteKey": "",
-    "statusMessages":   [],
+    "submitLabel": "Send Reservation Request",
+    "turnstileSiteKey": "0x4AAAAAACoAc8uo8BmkY1R1",
+    "statusMessages": [],
     "deliveredMessage": "Your reservation request has been received.",
-    "thankYouHeading":  "Reservation Received!",
-    "thankYouMessage":  "Thank you! We'll be in touch shortly to confirm your table.",
-    "thankYouSubtext":  "Check your email for a confirmation message.",
-    "errorMessage":     "Something went wrong. Please call us directly to reserve."
+    "thankYouHeading": "Reservation Received!",
+    "thankYouMessage": "Thank you! We'll be in touch shortly to confirm your table.",
+    "thankYouSubtext": "Check your email for a confirmation message.",
+    "errorMessage": "Something went wrong. Please call us directly to reserve."
   },
   "footer": {
-    "about":     "An intimate dining experience where craft, warmth, and seasonal flavors come together in every plate.",
+    "about": "An intimate dining experience where craft, warmth, and seasonal flavors come together in every plate.",
     "copyright": "© 2024 Ember & Oak. All rights reserved."
   }
 }
