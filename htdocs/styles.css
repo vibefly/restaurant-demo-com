@@ -150,7 +150,7 @@ h1, h2, h3, h4 {
   z-index: 100;
   height: var(--header-h);
   transition: background var(--transition), box-shadow var(--transition);
-  background: transparent;
+  background: var(--bg);
 }
 
 .site-header--scrolled,
