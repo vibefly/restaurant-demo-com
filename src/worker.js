@@ -163,9 +163,9 @@ async function renderPage(env, url) {
             reservationsBlockHtml = `<h3 class="contact-info__heading">Reservations</h3><p class="contact-private-text">Book your table quickly and easily through our online reservation system.</p><a class="btn btn--primary" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
         }
 
-        // Events listing — rendered for /events page
+        // Events listing — rendered for /events page, passing phone info for fallback CTA
         const eventsListingHtml = pathname === '/events'
-            ? renderEventsListing(eventsItems || [], reservationsUrl)
+            ? renderEventsListing(eventsItems || [], phone, phoneHref)
             : '';
 
         // Build nav HTML
@@ -373,14 +373,17 @@ async function renderPage(env, url) {
 
 /**
  * Render all event cards for the /events page into .events-page-grid.
- * Each card shows: date badge, tag, title, meta (date string / time / price),
- * description, and a CTA button.
+ *
+ * Per-event CTA logic:
+ *   - If the event has a `url` field → render a link button to that URL,
+ *     using `url_label` as the button text (fallback: "Get Tickets").
+ *   - Otherwise → render a tel: link showing "Call to Reserve" with the
+ *     business phone number.
+ *
+ * The global reservations_url is NOT used here.
  */
-function renderEventsListing(items, reservationsUrl) {
+function renderEventsListing(items, phone, phoneHref) {
     if (!items || items.length === 0) return '';
-
-    const ctaHref   = reservationsUrl || '/contact';
-    const ctaTarget = reservationsUrl ? ' target="_blank" rel="noopener"' : '';
 
     return items.map(item => {
         const tagHtml = item.tag
@@ -397,6 +400,17 @@ function renderEventsListing(items, reservationsUrl) {
             ? `<div class="event-page-card__meta">${metaItems}</div>`
             : '';
 
+        // Per-event CTA: url → external link; no url → phone call
+        let ctaHtml;
+        if (item.url && item.url.trim()) {
+            const btnLabel = (item.url_label && item.url_label.trim()) ? item.url_label.trim() : 'Get Tickets';
+            ctaHtml = `<a class="btn btn--primary" href="${escAttr(item.url.trim())}" target="_blank" rel="noopener">${escHtml(btnLabel)}</a>`;
+        } else {
+            // Phone fallback — show number alongside label
+            const phoneDisplay = phone ? ` — ${escHtml(phone)}` : '';
+            ctaHtml = `<a class="btn btn--outline event-page-card__phone-cta" href="${escAttr(phoneHref)}"><i data-lucide="phone"></i>Call to Reserve${phoneDisplay}</a>`;
+        }
+
         return `<article class="event-page-card">
   <div class="event-page-card__date-badge">
     <span class="event-page-card__day">${escHtml(item.day || '')}</span>
@@ -409,7 +423,7 @@ function renderEventsListing(items, reservationsUrl) {
     </div>
     ${metaHtml}
     <p class="event-page-card__desc">${escHtml(item.desc || '')}</p>
-    <a class="btn btn--primary" href="${escAttr(ctaHref)}"${ctaTarget}>Reserve Your Seat</a>
+    ${ctaHtml}
   </div>
 </article>`;
     }).join('\n');

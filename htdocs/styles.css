@@ -876,10 +876,21 @@ h1, h2, h3, h4 {
   flex: 1;
 }
 
-/* CTA button — flush to card bottom */
+/* CTA buttons — flush to card bottom */
 .event-page-card__body .btn {
   align-self: flex-start;
   margin-top: auto;
+}
+
+/* Phone CTA variant — icon + number inline */
+.event-page-card__phone-cta {
+  gap: 10px;
+}
+
+.event-page-card__phone-cta svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
 }
 
 /* ── Private Events CTA section (below listing) ── */
