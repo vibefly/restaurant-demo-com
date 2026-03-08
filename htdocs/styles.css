@@ -1657,3 +1657,92 @@ h1, h2, h3, h4 {
 
   .events-private-cta__badges { grid-template-columns: 1fr 1fr; }
 }
+/* ==========================================================================
+   Ken Burns slideshow + image slots
+   ========================================================================== */
+
+/* Container sits behind hero content, fills the section */
+.kb-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Each slide */
+.kb-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  /* --n and --i set inline by images.js */
+  animation: kb-cycle calc(var(--kb-dur, 8s) * var(--n, 1))
+             calc(var(--kb-dur, 8s) * var(--i, 0))
+             linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes kb-cycle {
+  /* Fade in */
+  0%   { opacity: 0;   transform: scale(1.00); }
+  5%   { opacity: 1;   transform: scale(1.00); }
+  /* Hold + slow zoom */
+  45%  { opacity: 1;   transform: scale(1.08); }
+  /* Fade out */
+  55%  { opacity: 0;   transform: scale(1.09); }
+  /* Stay hidden for remaining slides */
+  100% { opacity: 0;   transform: scale(1.00); }
+}
+
+/* Hero already has position:relative — ensure children stack */
+.hero { position: relative; }
+.hero .hero__bg-overlay,
+.hero .hero__content,
+.hero .hero__scroll-hint { position: relative; z-index: 1; }
+
+/* Chef image slot — photo replaces the placeholder */
+.chef-image-frame { overflow: hidden; }
+
+.chef-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  transition: transform 0.5s ease;
+}
+
+.chef-image-frame:hover .chef-photo {
+  transform: scale(1.05);
+}
+
+/* Gallery grid (shown when gallery images exist) */
+.site-gallery {
+  padding: 80px 0;
+  background: var(--color-bg-alt, #1a1410);
+}
+
+.site-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.site-gallery__item {
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+}
+
+.site-gallery__item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.site-gallery__item:hover img {
+  transform: scale(1.06);
+}
