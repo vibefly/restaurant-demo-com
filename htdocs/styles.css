@@ -203,7 +203,58 @@ h1, h2, h3, h4 {
   background: rgba(201,148,58,0.08);
 }
 
+/* ── Header Integrations ────────────────────────────────── */
+.header-integrations {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* When empty (no integration URLs set) take up no space */
+.header-integrations:empty { display: none; }
+
+.header-integrations .integration-btn {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-integrations .integration-btn--reserve {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+  border: 2px solid var(--accent-primary);
+}
+.header-integrations .integration-btn--reserve:hover {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.header-integrations .integration-btn--order {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+.header-integrations .integration-btn--order:hover {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+}
+
 .header-cta { margin-left: 8px; padding: 10px 22px; }
+
+/* Hide the default header-cta when an integration reserve button is present */
+.has-reserve-integration .header-cta {
+  display: none;
+}
 
 /* Hamburger */
 .nav-toggle {
@@ -312,6 +363,46 @@ h1, h2, h3, h4 {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Empty integration span in hero takes no space */
+.hero__cta-group > span[data-content-integrations-hero]:empty { display: none; }
+
+/* Integration buttons inside hero CTA group */
+.hero__cta-group .integration-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.hero__cta-group .integration-btn--reserve {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+  border: 2px solid var(--accent-primary);
+}
+.hero__cta-group .integration-btn--reserve:hover {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.hero__cta-group .integration-btn--order {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid rgba(240,232,220,0.4);
+}
+.hero__cta-group .integration-btn--order:hover {
+  border-color: var(--text-primary);
+  background: rgba(240,232,220,0.08);
 }
 
 .hero__scroll-hint {
@@ -332,6 +423,91 @@ h1, h2, h3, h4 {
   0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
   50%  { opacity: 1; transform: scaleY(1); }
   100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── Page Hero Integrations ─────────────────────────────── */
+.page-hero__integrations {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Empty state — takes no space */
+.page-hero__integrations:empty { display: none; }
+
+.page-hero__integrations .integration-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.page-hero__integrations .integration-btn--reserve {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+  border: 2px solid var(--accent-primary);
+}
+.page-hero__integrations .integration-btn--reserve:hover {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.page-hero__integrations .integration-btn--order {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+.page-hero__integrations .integration-btn--order:hover {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+}
+
+/* ── Reservation CTA integration buttons ────────────────── */
+.reservation-cta__actions > span[data-content-integrations-cta]:empty { display: none; }
+
+.reservation-cta__actions .integration-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.reservation-cta__actions .integration-btn--reserve {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+  border: 2px solid var(--accent-primary);
+}
+.reservation-cta__actions .integration-btn--reserve:hover {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.reservation-cta__actions .integration-btn--order {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid rgba(240,232,220,0.4);
+}
+.reservation-cta__actions .integration-btn--order:hover {
+  border-color: var(--text-primary);
+  background: rgba(240,232,220,0.08);
 }
 
 /* ── Sections (dynamic) ─────────────────────────────────── */
@@ -683,6 +859,7 @@ h1, h2, h3, h4 {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 /* ── Page Hero (inner pages) ────────────────────────────── */
@@ -1147,6 +1324,7 @@ h1, h2, h3, h4 {
   .site-nav ul { flex-direction: column; gap: 8px; text-align: center; }
   .nav-link { font-size: 1rem; padding: 14px 24px; }
   .header-cta { display: none; }
+  .header-integrations { display: none; }
 
   .hero__title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
   .section { padding: 64px 0; }
@@ -1173,7 +1351,8 @@ h1, h2, h3, h4 {
 
 @media (max-width: 480px) {
   .hero__cta-group { flex-direction: column; align-items: center; }
-  .hero__cta-group .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .hero__cta-group .btn,
+  .hero__cta-group .integration-btn { width: 100%; max-width: 320px; justify-content: center; }
 
   .cards-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -1182,7 +1361,11 @@ h1, h2, h3, h4 {
   .catering-badge:nth-child(3) { grid-column: auto; max-width: none; }
 
   .reservation-cta__actions { flex-direction: column; align-items: center; }
-  .reservation-cta__actions .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .reservation-cta__actions .btn,
+  .reservation-cta__actions .integration-btn { width: 100%; max-width: 320px; justify-content: center; }
+
+  .page-hero__integrations { flex-direction: column; align-items: center; }
+  .page-hero__integrations .integration-btn { width: 100%; max-width: 320px; justify-content: center; }
 
   .menu-tabs { gap: 0; }
   .menu-tab { padding: 12px 16px; font-size: 0.72rem; }
