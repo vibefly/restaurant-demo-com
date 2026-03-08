@@ -358,16 +358,6 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
   align-items: center;
 }
-.hero__cta-group .btn {
-  background: var(--bg);
-  border-color: var(--bg);
-  color: var(--text-primary);
-}
-.hero__cta-group .btn:hover {
-  background: var(--bg);
-  border-color: var(--bg);
-  transform: scale(1.05);
-}
 
 .hero__cta-group > span[data-content-integrations-hero]:empty { display: none; }
 
