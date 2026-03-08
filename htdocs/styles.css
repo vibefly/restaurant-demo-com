@@ -341,7 +341,7 @@ h1, h2, h3, h4 {
   color: #000000;
   margin-bottom: 24px;
   font-style: italic;
-  text-shadow: 0 0 5px var(--accent-primary), 0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary), 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary), 0 0 20px var(--accent-primary), 0 0 40px var(--accent-primary), 0 0 80px var(--accent-primary), 0 0 150px var(--accent-primary), 0 0 250px var(--accent-primary), 0 0 400px var(--accent-primary);
+  text-shadow: 0 0 5px #e4ca9d, 0 0 5px #e4ca9d, 0 0 10px #e4ca9d, 0 0 10px #e4ca9d, 0 0 20px #e4ca9d, 0 0 20px #e4ca9d, 0 0 40px #e4ca9d, 0 0 80px #e4ca9d, 0 0 150px #e4ca9d, 0 0 250px #e4ca9d, 0 0 400px #e4ca9d;
 }
 
 .hero__subtext {
@@ -350,7 +350,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   margin-bottom: 48px;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 5px var(--accent-primary), 0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary), 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary), 0 0 40px var(--accent-primary), 0 0 80px var(--accent-primary), 0 0 150px var(--accent-primary), 0 0 250px var(--accent-primary);
+  text-shadow: 0 0 5px #e4ca9d, 0 0 5px #e4ca9d, 0 0 10px #e4ca9d, 0 0 10px #e4ca9d, 0 0 20px #e4ca9d, 0 0 40px #e4ca9d, 0 0 80px #e4ca9d, 0 0 150px #e4ca9d, 0 0 250px #e4ca9d;
 }
 
 .hero__cta-group {
