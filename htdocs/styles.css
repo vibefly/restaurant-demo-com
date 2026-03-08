@@ -599,11 +599,8 @@ h1, h2, h3, h4 {
 .chef-image-col {
   display: flex;
   justify-content: center;
-  /* Reserve space for the decorative border offset so it doesn't overflow */
-  padding: 20px;
 }
 
-/* Outer wrapper that sizes the frame and hosts the offset border */
 .chef-image-frame {
   position: relative;
   width: 100%;
@@ -612,35 +609,10 @@ h1, h2, h3, h4 {
   opacity: 0;
   transform: translateX(-24px);
   transition: opacity 0.8s ease, transform 0.8s ease;
-  /* Shrink to leave room for the ::after decorative border on all sides */
-  margin: 16px;
 }
 .chef-image-frame.in-view { opacity: 1; transform: none; }
 
-/*
-  Decorative border: offset by 16px down-right from the photo frame.
-  Using positive inset values means the border is INSIDE the pseudo-element's
-  bounding box; we size the pseudo-element larger than the frame and shift it
-  so the border appears offset behind/around the photo.
-*/
-.chef-image-frame::before {
-  content: '';
-  position: absolute;
-  /* Shift the decorative border 16px to the right and 16px down */
-  top: 16px;
-  left: 16px;
-  right: -16px;
-  bottom: -16px;
-  border: 1px solid var(--accent-primary);
-  border-radius: var(--radius-md);
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .chef-image-placeholder {
-  position: relative;
-  z-index: 1;
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, var(--bg-dark) 0%, #2a2018 100%);
@@ -1381,8 +1353,6 @@ h1, h2, h3, h4 {
   .chef-layout { gap: 40px; }
   .chef-image-col { padding: 16px; }
   .chef-image-frame { max-width: 280px; margin: 0 auto; }
-  /* Hide the decorative border on mobile to avoid overflow issues */
-  .chef-image-frame::before { display: none; }
 
   .catering-badges-col { grid-template-columns: 1fr 1fr; }
   .catering-badge:nth-child(3) { grid-column: 1 / -1; max-width: 200px; }
