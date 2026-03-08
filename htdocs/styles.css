@@ -1682,6 +1682,10 @@ h1, h2, h3, h4 {
              linear infinite;
   will-change: transform, opacity;
 }
+.kb-slide--static {
+  opacity: 1;
+  animation: none;
+}
 
 @keyframes kb-cycle {
   /* Fade in */
