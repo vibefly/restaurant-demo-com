@@ -338,19 +338,17 @@ h1, h2, h3, h4 {
   font-size: clamp(2.8rem, 6vw, 5rem);
   font-weight: 700;
   line-height: 1.1;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 24px;
   font-style: italic;
-  text-shadow: 0 0 5px #e4ca9d, 0 0 5px #e4ca9d, 0 0 10px #e4ca9d, 0 0 10px #e4ca9d, 0 0 20px #e4ca9d, 0 0 20px #e4ca9d, 0 0 40px #e4ca9d, 0 0 80px #e4ca9d, 0 0 150px #e4ca9d, 0 0 250px #e4ca9d, 0 0 400px #e4ca9d;
 }
 
 .hero__subtext {
   font-size: 1.15rem;
-  color: #000000;
-  font-weight: 600;
+  color: var(--text-secondary);
+  font-weight: 300;
   margin-bottom: 48px;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 5px #e4ca9d, 0 0 5px #e4ca9d, 0 0 10px #e4ca9d, 0 0 10px #e4ca9d, 0 0 20px #e4ca9d, 0 0 40px #e4ca9d, 0 0 80px #e4ca9d, 0 0 150px #e4ca9d, 0 0 250px #e4ca9d;
 }
 
 .hero__cta-group {
