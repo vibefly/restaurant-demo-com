@@ -35,12 +35,15 @@
     if (!heroImages.length) return;
 
     const n = heroImages.length;
-    container.style.setProperty('--n', n);
-    container.style.setProperty('--kb-dur', KB_DUR + 's');
+    const animate = n > 1;
+    if (animate) {
+      container.style.setProperty('--n', n);
+      container.style.setProperty('--kb-dur', KB_DUR + 's');
+    }
 
     heroImages.forEach((img, i) => {
       const slide = document.createElement('div');
-      slide.className = 'kb-slide';
+      slide.className = animate ? 'kb-slide' : 'kb-slide kb-slide--static';
       slide.style.backgroundImage = `url(${img.src})`;
       slide.style.setProperty('--n', n);
       slide.style.setProperty('--i', i);
