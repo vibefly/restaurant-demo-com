@@ -92,6 +92,21 @@ async function renderPage(env, url) {
         modifiedHtml = modifiedHtml.replace('</head>', `${ogTags}\n${inlineScripts}\n</head>`);
 
         // ── Integration HTML fragments ───────────────────────────────────────────
+        //
+        // RESERVE pattern:
+        //   - Static fallback elements (.hero-reserve-btn, .header-cta,
+        //     .reservation-cta-fallback) are ALWAYS removed by the rewriter.
+        //   - When hasReservations is TRUE, integration buttons are injected
+        //     into the named slots instead.
+        //   - When hasReservations is FALSE, nothing is injected → no reserve
+        //     CTAs appear anywhere on the page.
+        //
+        // ORDER pattern (identical logic):
+        //   - Static fallback elements (.order-online-btn) are ALWAYS removed.
+        //   - When hasOrder is TRUE, integration buttons are injected into the
+        //     named slots instead.
+        //   - When hasOrder is FALSE, nothing is injected → no order CTAs
+        //     appear anywhere on the page.
 
         // Header nav: integration buttons only when URLs are set
         let integNavHtml = '';
@@ -102,9 +117,11 @@ async function renderPage(env, url) {
             integNavHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve</a>`;
         }
 
-        // Hero CTA group: integration buttons injected when reservations_url is set.
-        // When hasReservations is TRUE these replace the static .hero-reserve-btn (which is removed below).
-        // When hasReservations is FALSE the static button is also removed (no reservation CTAs shown).
+        // Hero CTA group:
+        //   - When hasReservations is TRUE: inject reserve integration button.
+        //   - When hasOrder is TRUE: inject order integration button.
+        //   - Static fallbacks (.hero-reserve-btn, .order-online-btn) are
+        //     always removed below regardless of URL presence.
         let integHeroHtml = '';
         if (hasReservations) {
             integHeroHtml += `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${escHtml(content.hero && content.hero.ctaText ? content.hero.ctaText : 'Reserve a Table')}</a>`;
@@ -113,7 +130,9 @@ async function renderPage(env, url) {
             integHeroHtml += `<a class="btn btn--ghost btn--lg integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Page-level hero (contact/menu): integration buttons only when URLs are set
+        // Page-level hero (contact/menu):
+        //   - Reserve button shown on /contact only when hasReservations.
+        //   - Order button shown on /menu only when hasOrder.
         let integPageHtml = '';
         if (hasReservations && pathname === '/contact') {
             integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
@@ -123,8 +142,9 @@ async function renderPage(env, url) {
         }
 
         // Reservation CTA section:
-        // When hasReservations is TRUE: inject integration button AND remove static fallback.
-        // When hasReservations is FALSE: remove static fallback too — no reservation CTA shown at all.
+        //   - When hasReservations is TRUE: inject integration button.
+        //   - When hasReservations is FALSE: inject nothing (static fallback
+        //     .reservation-cta-fallback is always removed below).
         let integCtaHtml = '';
         if (hasReservations) {
             const ctaLabel = escHtml(
@@ -192,10 +212,13 @@ async function renderPage(env, url) {
             .on('body', {
                 element(el) {
                     const cls = el.getAttribute('class') || '';
-                    // Add has-reserve-integration class when reservations_url is set
-                    // so CSS can hide the default header-cta link
-                    const extra = hasReservations ? ' has-reserve-integration' : '';
-                    el.setAttribute('class', (cls + ' content-loaded' + extra).trim());
+                    // Add has-reserve-integration / has-order-integration classes
+                    // so CSS can target dependent elements if needed
+                    const extra = [
+                        hasReservations ? 'has-reserve-integration' : '',
+                        hasOrder        ? 'has-order-integration'   : '',
+                    ].filter(Boolean).join(' ');
+                    el.setAttribute('class', (cls + ' content-loaded' + (extra ? ' ' + extra : '')).trim());
                 }
             })
             .on('[data-content]', {
@@ -264,7 +287,7 @@ async function renderPage(env, url) {
                     if (content.footer && content.footer.copyright) el.setInnerContent(content.footer.copyright);
                 }
             })
-            // ── Integration injection points ──────────────────────────────────────
+            // ── Integration injection points ─────────────────────────────────────
             .on('[data-content-integrations-nav]', {
                 element(el) { el.setInnerContent(integNavHtml, { html: true }); }
             })
@@ -295,10 +318,10 @@ async function renderPage(env, url) {
                     }
                 }
             })
-            // ── Static reservation elements ───────────────────────────────────────
-            // These are always removed. When hasReservations is TRUE they are replaced
-            // by the integration buttons injected above. When hasReservations is FALSE
-            // there should be no reservation CTAs on the page at all.
+            // ── Static reserve fallback elements — ALWAYS removed ────────────────
+            // When hasReservations is TRUE they are superseded by the integration
+            // buttons injected above. When hasReservations is FALSE there should be
+            // no reservation CTAs on the page at all.
             .on('.hero-reserve-btn', {
                 element(el) { el.remove(); }
             })
@@ -306,6 +329,13 @@ async function renderPage(env, url) {
                 element(el) { el.remove(); }
             })
             .on('.reservation-cta-fallback', {
+                element(el) { el.remove(); }
+            })
+            // ── Static order fallback elements — ALWAYS removed ──────────────────
+            // When hasOrder is TRUE they are superseded by the integration buttons
+            // injected above. When hasOrder is FALSE there should be no order CTAs
+            // on the page at all.
+            .on('.order-online-btn', {
                 element(el) { el.remove(); }
             });
 
