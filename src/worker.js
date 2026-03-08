@@ -44,10 +44,18 @@ async function renderPage(env, url) {
 
         const [html, content] = await Promise.all([htmlRes.text(), contentRes.json()]);
 
-        const biz     = content.business || {};
-        const formCfg = content.form     || {};
+        const biz         = content.business     || {};
+        const formCfg     = content.form         || {};
+        const integrations = content.integrations || {};
+
         if (!formCfg.thankYouSub && formCfg.thankYouSubtext) formCfg.thankYouSub = formCfg.thankYouSubtext;
         if (!formCfg.thankYouSubtext && formCfg.thankYouSub) formCfg.thankYouSubtext = formCfg.thankYouSub;
+
+        // Integration URLs
+        const reservationsUrl = (integrations.reservations_url || '').trim();
+        const orderUrl        = (integrations.order_url        || '').trim();
+        const hasReservations = !!reservationsUrl;
+        const hasOrder        = !!orderUrl;
 
         // Slug for per-page data
         const slug = pathname === '/' ? 'home' : pathname.slice(1);
@@ -83,7 +91,56 @@ async function renderPage(env, url) {
         modifiedHtml = modifiedHtml.replace(/<script id="content-fetch">[\s\S]*?<\/script>\n?/, '');
         modifiedHtml = modifiedHtml.replace('</head>', `${ogTags}\n${inlineScripts}\n</head>`);
 
-        // Build injected HTML fragments
+        // ── Integration HTML fragments ───────────────────────────────────────────
+
+        // Header nav: reserve button only when reservations_url is set
+        // (order button also shown if order_url is set)
+        let integNavHtml = '';
+        if (hasOrder) {
+            integNavHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
+        }
+        if (hasReservations) {
+            integNavHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve</a>`;
+        }
+
+        // Hero CTA group: reserve button replaces the default /contact link when set
+        let integHeroHtml = '';
+        if (hasReservations) {
+            integHeroHtml += `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${escHtml(content.hero && content.hero.ctaText ? content.hero.ctaText : 'Reserve a Table')}</a>`;
+        }
+        if (hasOrder) {
+            integHeroHtml += `<a class="btn btn--ghost btn--lg integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
+        }
+
+        // Page-level (contact/menu hero): reserve / order buttons
+        let integPageHtml = '';
+        if (hasReservations && pathname === '/contact') {
+            integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
+        }
+        if (hasOrder && pathname === '/menu') {
+            integPageHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
+        }
+
+        // Reservation CTA section: always show a primary reserve action
+        // If reservations_url set → external link; otherwise → /contact
+        let integCtaHtml = '';
+        if (hasReservations) {
+            const ctaLabel = escHtml((pageData && content.pages.home && content.pages.home.reservation && content.pages.home.reservation.ctaText) || 'Reserve a Table');
+            integCtaHtml = `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${ctaLabel}</a>`;
+        } else {
+            // Fall back: link to contact page
+            const ctaLabel = escHtml((content.pages && content.pages.home && content.pages.home.reservation && content.pages.home.reservation.ctaText) || 'Reserve a Table');
+            integCtaHtml = `<a class="btn btn--primary btn--lg" href="/contact">${ctaLabel}</a>`;
+        }
+
+        // Contact page: reservations info block
+        // Only rendered when reservations_url is set
+        let reservationsBlockHtml = '';
+        if (hasReservations) {
+            reservationsBlockHtml = `<h3 class="contact-info__heading">Reservations</h3><p class="contact-private-text">Book your table quickly and easily through our online reservation system.</p><a class="btn btn--primary" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
+        }
+
+        // Build nav HTML
         const navHtml = nav.map(item =>
             `<li><a class="nav-link" href="${escAttr(item.href || '#')}">${escHtml(item.label || '')}</a></li>`
         ).join('');
@@ -134,7 +191,10 @@ async function renderPage(env, url) {
             .on('body', {
                 element(el) {
                     const cls = el.getAttribute('class') || '';
-                    el.setAttribute('class', (cls + ' content-loaded').trim());
+                    // Add has-reserve-integration class when reservations_url is set
+                    // so CSS can hide the default header-cta link
+                    const extra = hasReservations ? ' has-reserve-integration' : '';
+                    el.setAttribute('class', (cls + ' content-loaded' + extra).trim());
                 }
             })
             .on('[data-content]', {
@@ -145,6 +205,9 @@ async function renderPage(env, url) {
             })
             .on('[data-content-attr-href]', {
                 element(el) {
+                    // Only update href when NO reservations integration is set;
+                    // when integration is set, the hero reserve btn is injected separately
+                    // and the default anchor will be hidden via CSS (.has-reserve-integration)
                     const val = resolve(el.getAttribute('data-content-attr-href'));
                     if (val) el.setAttribute('href', String(val));
                 }
@@ -201,6 +264,45 @@ async function renderPage(env, url) {
             .on('[data-content-copyright]', {
                 element(el) {
                     if (content.footer && content.footer.copyright) el.setInnerContent(content.footer.copyright);
+                }
+            })
+            // ── Integration injection points ──────────────────────────────────────
+            .on('[data-content-integrations-nav]', {
+                element(el) { el.setInnerContent(integNavHtml, { html: true }); }
+            })
+            .on('[data-content-integrations-hero]', {
+                element(el) { el.setInnerContent(integHeroHtml, { html: true }); }
+            })
+            .on('[data-content-integrations-page]', {
+                element(el) { el.setInnerContent(integPageHtml, { html: true }); }
+            })
+            .on('[data-content-integrations-cta]', {
+                element(el) { el.replace(integCtaHtml, { html: true }); }
+            })
+            .on('[data-content-reservations-block]', {
+                element(el) {
+                    if (reservationsBlockHtml) {
+                        el.setInnerContent(reservationsBlockHtml, { html: true });
+                    } else {
+                        // Remove the empty block entirely so it takes no space
+                        el.remove();
+                    }
+                }
+            })
+            // Hide the default hero reserve link when integration is active
+            .on('.hero-reserve-btn', {
+                element(el) {
+                    if (hasReservations) {
+                        el.remove();
+                    }
+                }
+            })
+            // Hide the default header-cta link when integration provides a reserve button
+            .on('.header-cta', {
+                element(el) {
+                    if (hasReservations) {
+                        el.remove();
+                    }
                 }
             });
 

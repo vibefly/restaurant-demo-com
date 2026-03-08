@@ -251,11 +251,6 @@ h1, h2, h3, h4 {
 
 .header-cta { margin-left: 8px; padding: 10px 22px; }
 
-/* Hide the default header-cta when an integration reserve button is present */
-.has-reserve-integration .header-cta {
-  display: none;
-}
-
 /* Hamburger */
 .nav-toggle {
   display: none;
@@ -1116,6 +1111,10 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-md);
   padding: 28px;
 }
+
+/* Empty reservations block (no integration set) is removed by worker,
+   but guard here too just in case */
+.contact-reservations-block:empty { display: none; }
 
 .contact-info__heading {
   font-family: var(--font-display);

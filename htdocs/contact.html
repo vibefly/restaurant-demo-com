@@ -36,8 +36,8 @@
     <div class="page-hero__overlay"></div>
     <div class="container page-hero__content">
       <p class="hero__label" data-content="pages.contact.label">Get in Touch</p>
-      <h1 class="page-hero__title" data-content="pages.contact.title">Reservations &amp; Inquiries</h1>
-      <p class="page-hero__sub" data-content="pages.contact.subtitle">We'd love to host you. Reach out to reserve your table or ask about private events.</p>
+      <h1 class="page-hero__title" data-content="pages.contact.title">Contact Us</h1>
+      <p class="page-hero__sub" data-content="pages.contact.subtitle">We'd love to hear from you. Reach out for general inquiries or to ask about private events.</p>
       <!-- Integration reserve button injected here by worker -->
       <div class="page-hero__integrations" data-content-integrations-page></div>
     </div>
@@ -51,19 +51,19 @@
         <!-- FORM -->
         <div class="contact-form-col">
           <div class="contact-form-card" id="contact-form-wrapper">
-            <h2 class="contact-form__heading" data-content="contact.heading">Make a Reservation</h2>
-            <p class="contact-form__sub" data-content="contact.subheading">Fill out the form below and we'll confirm your reservation within 24 hours.</p>
+            <h2 class="contact-form__heading" data-content="contact.heading">Send Us a Message</h2>
+            <p class="contact-form__sub" data-content="contact.subheading">Fill out the form below and we'll get back to you within 24 hours.</p>
 
             <form class="contact-form" id="contact-form" novalidate>
               <div id="form-fields-placeholder"></div>
-              <button type="submit" class="btn btn--primary btn--block">Send Reservation Request</button>
+              <button type="submit" class="btn btn--primary btn--block">Send Message</button>
             </form>
 
             <!-- Thank you state -->
             <div class="form-thankyou" id="form-thankyou" hidden>
               <div class="form-thankyou__icon"><i data-lucide="check-circle"></i></div>
-              <h3 data-content="form.thankYouHeading">Reservation Received!</h3>
-              <p data-content="form.thankYouMessage">Thank you! We'll be in touch shortly to confirm your reservation.</p>
+              <h3 data-content="form.thankYouHeading">Message Received!</h3>
+              <p data-content="form.thankYouMessage">Thank you for reaching out. We'll be in touch within 24 hours.</p>
               <p class="form-thankyou__sub" data-content="form.thankYouSubtext">Check your email for a confirmation message.</p>
             </div>
           </div>
@@ -100,6 +100,9 @@
             <h3 class="contact-info__heading">Hours</h3>
             <div class="contact-hours" data-content-list="contact.hours"></div>
           </div>
+
+          <!-- Reservations block — shown only when reservations_url is set -->
+          <div class="contact-info-block contact-reservations-block" data-content-reservations-block></div>
 
           <div class="contact-info-block">
             <h3 class="contact-info__heading">Private Events</h3>
@@ -191,12 +194,12 @@
             }
           } else {
             btn.disabled = false;
-            btn.textContent = cfg.submitLabel || 'Send Reservation Request';
+            btn.textContent = cfg.submitLabel || 'Send Message';
             alert(json.error || cfg.errorMessage || 'Something went wrong. Please try again.');
           }
         } catch {
           btn.disabled = false;
-          btn.textContent = cfg.submitLabel || 'Send Reservation Request';
+          btn.textContent = cfg.submitLabel || 'Send Message';
           alert(cfg.errorMessage || 'Network error. Please try again.');
         }
       });

@@ -38,7 +38,7 @@
       <h1 class="hero__title" data-content="hero.title">Where Every Meal Tells a Story</h1>
       <p class="hero__subtext" data-content="hero.subtext">Artfully crafted cuisine in an intimate, atmospheric setting</p>
       <div class="hero__cta-group">
-        <a class="btn btn--primary btn--lg" data-content-attr-href="hero.ctaHref" href="/contact" data-content="hero.ctaText">Reserve a Table</a>
+        <a class="btn btn--primary btn--lg hero-reserve-btn" data-content-attr-href="hero.ctaHref" href="/contact" data-content="hero.ctaText">Reserve a Table</a>
         <a class="btn btn--outline btn--lg" data-content-attr-href="hero.ctaSecondaryHref" href="/menu" data-content="hero.ctaSecondaryText">View Menu</a>
         <!-- Integration hero buttons injected here by worker -->
         <span data-content-integrations-hero></span>
@@ -157,18 +157,17 @@
     </div>
   </section>
 
-  <!-- RESERVATION CTA -->
+  <!-- VISIT CTA -->
   <section class="reservation-cta" id="reservations">
     <div class="reservation-cta__overlay"></div>
     <div class="container reservation-cta__inner">
-      <p class="section__label" data-content="pages.home.reservation.label">Book Your Table</p>
+      <p class="section__label" data-content="pages.home.reservation.label">Visit Us</p>
       <h2 class="section-heading" data-content="pages.home.reservation.heading">Join Us for an Unforgettable Evening</h2>
       <p class="reservation-cta__sub" data-content="pages.home.reservation.subtext">We recommend reservations, especially on weekends. Walk-ins welcome based on availability.</p>
       <div class="reservation-cta__actions">
-        <a class="btn btn--primary btn--lg" href="/contact" data-content="pages.home.reservation.ctaText">Make a Reservation</a>
-        <a class="btn btn--ghost btn--lg" data-content-phone href="tel:+15551234567">Call Us</a>
-        <!-- Integration reservation CTA injected here by worker -->
+        <!-- Reserve button injected by worker when reservations_url is set; falls back to contact link -->
         <span data-content-integrations-cta></span>
+        <a class="btn btn--ghost btn--lg" data-content-phone href="tel:+15551234567">Call Us</a>
       </div>
     </div>
   </section>
