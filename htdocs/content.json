@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Ember & Oak â Upscale Casual Dining",
+    "title": "Ember & Oak — Upscale Casual Dining",
     "description": "An intimate dining experience featuring artfully crafted cuisine with warm amber tones and a moody, welcoming atmosphere."
   },
   "theme": {
@@ -69,7 +69,7 @@
   },
   "pages": {
     "home": {
-      "title": "Ember & Oak â Upscale Casual Dining",
+      "title": "Ember & Oak — Upscale Casual Dining",
       "description": "Artfully crafted cuisine in a warm, intimate atmosphere. Reserve your table tonight.",
       "sections": [
         {
@@ -86,7 +86,7 @@
             {
               "icon": "fish",
               "title": "Wild Halibut",
-              "text": "Pan-seared Pacific halibut over saffron beurre blanc with spring pea purÃ©e and crispy capers. Delicate and precise."
+              "text": "Pan-seared Pacific halibut over saffron beurre blanc with spring pea purée and crispy capers. Delicate and precise."
             },
             {
               "icon": "leaf",
@@ -107,7 +107,7 @@
           "subheading": "Memorable evenings, honestly told",
           "items": [
             {
-              "quote": "The atmosphere alone is worth the visit â but the food elevates it to something truly special. The ribeye was flawless.",
+              "quote": "The atmosphere alone is worth the visit — but the food elevates it to something truly special. The ribeye was flawless.",
               "author": "Margaret T.",
               "role": "Regular Guest",
               "stars": 5
@@ -131,7 +131,7 @@
         "label": "Meet the Chef",
         "heading": "A Culinary Vision",
         "bio": "Chef Marco Vitale brings over two decades of passion and precision to every dish, drawing inspiration from classical French technique, Italian heritage, and bold global flavors discovered through years of travel.",
-        "bio2": "Every plate is a personal statement â a commitment to honest ingredients elevated by artistry and deep respect for the craft.",
+        "bio2": "Every plate is a personal statement — a commitment to honest ingredients elevated by artistry and deep respect for the craft.",
         "name": "Chef Marco Vitale"
       },
       "events": {
@@ -165,7 +165,7 @@
       "catering": {
         "label": "Private Events",
         "heading": "Catering & Private Dining",
-        "desc": "Whether it's an intimate gathering or a grand celebration, our catering team brings the full Ember & Oak experience to your venue â with the same dedication to quality, craft, and warm hospitality.",
+        "desc": "Whether it's an intimate gathering or a grand celebration, our catering team brings the full Ember & Oak experience to your venue — with the same dedication to quality, craft, and warm hospitality.",
         "features": [
           "Corporate events & team dinners",
           "Wedding receptions & rehearsal dinners",
@@ -175,7 +175,7 @@
         "cta": "Inquire About Catering",
         "stat1Num": "200+",
         "stat1Label": "Events Catered",
-        "stat2Num": "4.9â",
+        "stat2Num": "4.9★",
         "stat2Label": "Average Rating",
         "stat3Num": "12+",
         "stat3Label": "Years Experience"
@@ -188,8 +188,8 @@
       }
     },
     "menu": {
-      "title": "Menu â Ember & Oak",
-      "description": "Explore our seasonal menus â dinner, lunch, desserts, and an extensive wine list.",
+      "title": "Menu — Ember & Oak",
+      "description": "Explore our seasonal menus — dinner, lunch, desserts, and an extensive wine list.",
       "label": "Our Offerings",
       "subtitle": "Seasonal ingredients. Timeless technique.",
       "notice": "Menus change seasonally. Please inform your server of any dietary requirements or allergies. Consuming raw or undercooked items may increase your risk of foodborne illness.",
@@ -239,7 +239,7 @@
                 {
                   "name": "Pan-Seared Halibut",
                   "price": "$42",
-                  "desc": "Wild halibut, saffron beurre blanc, spring pea purÃ©e, crispy capers, lemon zest",
+                  "desc": "Wild halibut, saffron beurre blanc, spring pea purée, crispy capers, lemon zest",
                   "tag": "Gluten-Free"
                 },
                 {
@@ -266,7 +266,7 @@
                   "tag": "Signature"
                 },
                 {
-                  "name": "CrÃ¨me BrÃ»lÃ©e",
+                  "name": "Crème Brûlée",
                   "price": "$14",
                   "desc": "Classic vanilla custard, caramelized sugar crust, fresh raspberries, mint",
                   "tag": "Classic"
@@ -291,13 +291,13 @@
                 {
                   "name": "French Onion Soup",
                   "price": "$14",
-                  "desc": "Slow-caramelized onion broth, gruyÃ¨re crouton, fresh thyme",
+                  "desc": "Slow-caramelized onion broth, gruyère crouton, fresh thyme",
                   "tag": "Classic"
                 },
                 {
                   "name": "Smoked Salmon Rillettes",
                   "price": "$16",
-                  "desc": "Cold-smoked Atlantic salmon, crÃ¨me fraÃ®che, capers, rye toast",
+                  "desc": "Cold-smoked Atlantic salmon, crème fraîche, capers, rye toast",
                   "tag": "Chef's Choice"
                 },
                 {
@@ -320,11 +320,11 @@
                 {
                   "name": "Croque Monsieur",
                   "price": "$19",
-                  "desc": "Thick-cut brioche, smoked ham, aged gruyÃ¨re bÃ©chamel, dressed frisÃ©e",
+                  "desc": "Thick-cut brioche, smoked ham, aged gruyère béchamel, dressed frisée",
                   "tag": "Classic"
                 },
                 {
-                  "name": "Seared Tuna NiÃ§oise",
+                  "name": "Seared Tuna Niçoise",
                   "price": "$28",
                   "desc": "Sushi-grade tuna, haricots verts, olives, soft egg, anchovy vinaigrette",
                   "tag": "Chef's Choice"
@@ -332,7 +332,7 @@
                 {
                   "name": "Mushroom & Brie Tartine",
                   "price": "$21",
-                  "desc": "Toasted sourdough, sautÃ©ed wild mushrooms, melted brie, microgreens, truffle oil",
+                  "desc": "Toasted sourdough, sautéed wild mushrooms, melted brie, microgreens, truffle oil",
                   "tag": "Vegetarian"
                 }
               ]
@@ -376,7 +376,7 @@
                   "tag": "Signature"
                 },
                 {
-                  "name": "CrÃ¨me BrÃ»lÃ©e",
+                  "name": "Crème Brûlée",
                   "price": "$14",
                   "desc": "Classic vanilla custard, caramelized sugar crust, fresh raspberries, mint",
                   "tag": "Classic"
@@ -394,9 +394,9 @@
                   "tag": "Selection"
                 },
                 {
-                  "name": "Ãles Flottantes",
+                  "name": "Îles Flottantes",
                   "price": "$12",
-                  "desc": "Soft meringue islands floating on crÃ¨me anglaise, praline, caramel threads",
+                  "desc": "Soft meringue islands floating on crème anglaise, praline, caramel threads",
                   "tag": "Chef's Choice"
                 }
               ]
@@ -434,15 +434,15 @@
               "name": "Champagne & Sparkling",
               "items": [
                 {
-                  "name": "Billecart-Salmon Brut RÃ©serve NV",
+                  "name": "Billecart-Salmon Brut Réserve NV",
                   "price": "$95",
-                  "desc": "Champagne, France â Fine bubbles, brioche, green apple, long finish",
+                  "desc": "Champagne, France — Fine bubbles, brioche, green apple, long finish",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Bisol Jeio Prosecco NV",
                   "price": "$48",
-                  "desc": "Veneto, Italy â Light, peach blossom, pear, delicate mousse",
+                  "desc": "Veneto, Italy — Light, peach blossom, pear, delicate mousse",
                   "tag": "By the Bottle"
                 },
                 {
@@ -457,27 +457,27 @@
               "name": "White Wines",
               "items": [
                 {
-                  "name": "Domaine Leflaive MÃ¢con-VerzÃ© 2021",
+                  "name": "Domaine Leflaive Mâcon-Verzé 2021",
                   "price": "$72",
-                  "desc": "Burgundy, France â Chardonnay. Mineral, white peach, hazelnut, crisp acidity",
+                  "desc": "Burgundy, France — Chardonnay. Mineral, white peach, hazelnut, crisp acidity",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Trimbach Riesling 2020",
                   "price": "$58",
-                  "desc": "Alsace, France â Slate, citrus zest, apricot, dry and precise",
+                  "desc": "Alsace, France — Slate, citrus zest, apricot, dry and precise",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Kim Crawford Sauvignon Blanc 2022",
                   "price": "$46",
-                  "desc": "Marlborough, NZ â Passionfruit, lime, fresh-cut grass, lively acidity",
+                  "desc": "Marlborough, NZ — Passionfruit, lime, fresh-cut grass, lively acidity",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "White Wine by the Glass",
                   "price": "from $14",
-                  "desc": "Rotating selection â ask your server for tonight's pours",
+                  "desc": "Rotating selection — ask your server for tonight's pours",
                   "tag": "By the Glass"
                 }
               ]
@@ -486,27 +486,27 @@
               "name": "Red Wines",
               "items": [
                 {
-                  "name": "ChÃ¢teau LÃ©oville Barton 2016",
+                  "name": "Château Léoville Barton 2016",
                   "price": "$195",
-                  "desc": "Saint-Julien, Bordeaux â Cassis, cedar, graphite, structured and age-worthy",
+                  "desc": "Saint-Julien, Bordeaux — Cassis, cedar, graphite, structured and age-worthy",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Delas Crozes-Hermitage 2019",
                   "price": "$68",
-                  "desc": "RhÃ´ne Valley, France â Syrah. Blackberry, smoked meat, white pepper, supple",
+                  "desc": "Rhône Valley, France — Syrah. Blackberry, smoked meat, white pepper, supple",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Merry Edwards Pinot Noir 2020",
                   "price": "$88",
-                  "desc": "Sonoma Coast, CA â Cherry, raspberry, forest floor, silky tannins",
+                  "desc": "Sonoma Coast, CA — Cherry, raspberry, forest floor, silky tannins",
                   "tag": "By the Bottle"
                 },
                 {
                   "name": "Red Wine by the Glass",
                   "price": "from $15",
-                  "desc": "Rotating selection â ask your server for tonight's pours",
+                  "desc": "Rotating selection — ask your server for tonight's pours",
                   "tag": "By the Glass"
                 }
               ]
@@ -515,21 +515,21 @@
               "name": "Dessert & Fortified",
               "items": [
                 {
-                  "name": "ChÃ¢teau d'Yquem 2015",
+                  "name": "Château d'Yquem 2015",
                   "price": "$48",
-                  "desc": "Sauternes, France â 75ml pour. Honey, apricot, orange marmalade, opulent",
+                  "desc": "Sauternes, France — 75ml pour. Honey, apricot, orange marmalade, opulent",
                   "tag": "By the Glass"
                 },
                 {
                   "name": "Taylor Fladgate 20yr Tawny Port",
                   "price": "$18",
-                  "desc": "Douro, Portugal â Walnut, dried fig, caramel, silky and complex",
+                  "desc": "Douro, Portugal — Walnut, dried fig, caramel, silky and complex",
                   "tag": "By the Glass"
                 },
                 {
                   "name": "Sommariva Grappa di Prosecco",
                   "price": "$16",
-                  "desc": "Veneto, Italy â Floral, pear, light and fragrant digestif",
+                  "desc": "Veneto, Italy — Floral, pear, light and fragrant digestif",
                   "tag": "By the Glass"
                 }
               ]
@@ -539,7 +539,7 @@
       ]
     },
     "contact": {
-      "title": "Contact â Ember & Oak",
+      "title": "Contact — Ember & Oak",
       "description": "Get in touch with Ember & Oak for general inquiries, private dining, and catering.",
       "label": "Get in Touch",
       "subtitle": "We'd love to hear from you. Reach out for general inquiries or to ask about private events.",
@@ -547,7 +547,7 @@
       "privateCtaText": "Explore Catering"
     },
     "events": {
-      "title": "Events â Ember & Oak",
+      "title": "Events — Ember & Oak",
       "description": "Join us for exclusive dining experiences, wine pairings, chef's table evenings, and seasonal celebrations at Ember & Oak.",
       "label": "Special Occasions",
       "subtitle": "Join us for exclusive dining experiences and seasonal celebrations",
@@ -564,7 +564,7 @@
           "desc": "An intimate five-course dinner curated around the finest Burgundy vintages, led by our resident sommelier. Each course is paired with a wine chosen to reveal the terroir of this legendary French region. Seating is limited to 20 guests.",
           "tag": "Wine Pairing",
           "price": "$145 per person",
-          "time": "7:00 pm â 10:30 pm",
+          "time": "7:00 pm — 10:30 pm",
           "url": "https://www.exploretock.com/emberandoak/event/burgundy-evening",
           "url_label": "Get Tickets"
         },
@@ -576,7 +576,7 @@
           "desc": "An exclusive eight-seat experience at the chef's pass. Chef Marco Vitale presents a ten-course tasting menu celebrating the peak of the summer harvest, with produce sourced directly from local farms that morning. An unparalleled window into the creative process.",
           "tag": "Chef's Table",
           "price": "$195 per person",
-          "time": "6:30 pm â 10:00 pm",
+          "time": "6:30 pm — 10:00 pm",
           "url": "https://www.exploretock.com/emberandoak/event/chefs-table-summer",
           "url_label": "Reserve Your Seat"
         },
@@ -585,10 +585,10 @@
           "month": "SAT",
           "date": "Saturday, 22 August 2025",
           "title": "Jazz & Small Plates Night",
-          "desc": "The Harlow Quartet returns for a live jazz evening in the main dining room. Enjoy an Ã  la carte selection of shareable small plates, craft cocktails, and an extended wine list. Walk-ins welcome based on availability.",
+          "desc": "The Harlow Quartet returns for a live jazz evening in the main dining room. Enjoy an à la carte selection of shareable small plates, craft cocktails, and an extended wine list. Walk-ins welcome based on availability.",
           "tag": "Live Music",
           "price": "No cover charge",
-          "time": "8:00 pm â 11:30 pm",
+          "time": "8:00 pm — 11:30 pm",
           "url": "",
           "url_label": ""
         },
@@ -597,10 +597,10 @@
           "month": "SAT",
           "date": "Saturday, 5 September 2025",
           "title": "Truffle Season Dinner",
-          "desc": "Celebrate the arrival of autumn with a dedicated truffle menu. From shaved black truffle over hand-rolled pasta to a truffle and Brie veloutÃ©, every dish pays homage to this extraordinary ingredient. Paired wine flight available as an add-on.",
+          "desc": "Celebrate the arrival of autumn with a dedicated truffle menu. From shaved black truffle over hand-rolled pasta to a truffle and Brie velouté, every dish pays homage to this extraordinary ingredient. Paired wine flight available as an add-on.",
           "tag": "Seasonal Menu",
           "price": "$120 per person",
-          "time": "7:00 pm â 10:00 pm",
+          "time": "7:00 pm — 10:00 pm",
           "url": "",
           "url_label": ""
         },
@@ -608,11 +608,11 @@
           "day": "19",
           "month": "SAT",
           "date": "Saturday, 19 September 2025",
-          "title": "Winemaker Dinner: RhÃ´ne Valley",
-          "desc": "We welcome a guest winemaker from the RhÃ´ne Valley for an evening of storytelling, exceptional wine, and a specially devised six-course menu. An education in one of France's most celebrated appellations, paired with food designed to showcase each bottle at its best.",
+          "title": "Winemaker Dinner: Rhône Valley",
+          "desc": "We welcome a guest winemaker from the Rhône Valley for an evening of storytelling, exceptional wine, and a specially devised six-course menu. An education in one of France's most celebrated appellations, paired with food designed to showcase each bottle at its best.",
           "tag": "Wine Pairing",
           "price": "$175 per person",
-          "time": "6:30 pm â 10:30 pm",
+          "time": "6:30 pm — 10:30 pm",
           "url": "https://www.eventbrite.com/e/rhone-valley-winemaker-dinner",
           "url_label": "Buy Tickets"
         }
@@ -623,9 +623,9 @@
     "heading": "Send Us a Message",
     "subheading": "Fill out the form below and we'll get back to you within 24 hours.",
     "hours": [
-      "Tuesday â Thursday: 5pm â 10pm",
-      "Friday â Saturday: 5pm â 11pm",
-      "Sunday: 4pm â 9pm",
+      "Tuesday – Thursday: 5pm – 10pm",
+      "Friday – Saturday: 5pm – 11pm",
+      "Sunday: 4pm – 9pm",
       "Monday: Closed"
     ],
     "serviceAreas": [
@@ -679,6 +679,6 @@
   },
   "footer": {
     "about": "An intimate dining experience where craft, warmth, and seasonal flavors come together in every plate.",
-    "copyright": "Â© 2024 Ember & Oak. All rights reserved."
+    "copyright": "© 2024 Ember & Oak. All rights reserved."
   }
 }
