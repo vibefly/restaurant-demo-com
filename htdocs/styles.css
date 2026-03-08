@@ -211,7 +211,6 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-/* When empty (no integration URLs set) take up no space */
 .header-integrations:empty { display: none; }
 
 .header-integrations .integration-btn {
@@ -284,7 +283,6 @@ h1, h2, h3, h4 {
     linear-gradient(160deg, var(--hero-start) 0%, #2a1f14 50%, var(--hero-start) 100%);
 }
 
-/* Decorative texture pattern */
 .hero::before {
   content: '';
   position: absolute;
@@ -361,10 +359,8 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 
-/* Empty integration span in hero takes no space */
 .hero__cta-group > span[data-content-integrations-hero]:empty { display: none; }
 
-/* Integration buttons inside hero CTA group */
 .hero__cta-group .integration-btn {
   display: inline-flex;
   align-items: center;
@@ -429,7 +425,6 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
 }
 
-/* Empty state — takes no space */
 .page-hero__integrations:empty { display: none; }
 
 .page-hero__integrations .integration-btn {
@@ -512,7 +507,7 @@ h1, h2, h3, h4 {
   transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.section.section-visible { /* from worker */ }
+.section.section-visible { }
 .section.in-view,
 .section.section-visible {
   opacity: 1;
@@ -898,6 +893,7 @@ h1, h2, h3, h4 {
 /* ── Menu Page ──────────────────────────────────────────── */
 .menu-section { padding: 80px 0; }
 
+/* Tab bar — shared by top-level menu tabs */
 .menu-tabs {
   display: flex;
   gap: 4px;
@@ -915,7 +911,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  padding: 14px 24px;
+  padding: 14px 28px;
   border: none;
   background: none;
   border-bottom: 2px solid transparent;
@@ -923,6 +919,7 @@ h1, h2, h3, h4 {
   transition: color var(--transition), border-color var(--transition);
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .menu-tab:hover { color: var(--accent-primary); }
 .menu-tab.active {
@@ -930,9 +927,42 @@ h1, h2, h3, h4 {
   border-bottom-color: var(--accent-primary);
 }
 
+/* Panel visibility */
 .menu-panel { display: none; }
 .menu-panel.active { display: block; }
 
+/* ── Menu section sub-groups (within a panel) ───────────── */
+.menu-section-group {
+  margin-bottom: 56px;
+}
+.menu-section-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Section heading (e.g. "Starters", "Mains") */
+.menu-section__heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent-secondary);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Decorative line after heading text */
+.menu-section__heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-card), transparent);
+}
+
+/* Menu item grid */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -945,7 +975,7 @@ h1, h2, h3, h4 {
 
 .menu-item {
   background: var(--bg-dark);
-  padding: 32px 28px;
+  padding: 28px;
   transition: background var(--transition);
 }
 .menu-item:hover { background: var(--bg-alt); }
@@ -960,7 +990,7 @@ h1, h2, h3, h4 {
 
 .menu-item__name {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.3;
@@ -968,7 +998,7 @@ h1, h2, h3, h4 {
 
 .menu-item__price {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent-primary);
   white-space: nowrap;
@@ -982,7 +1012,7 @@ h1, h2, h3, h4 {
   margin-bottom: 14px;
 }
 
-.menu-item__tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.menu-item__tags { display: flex; gap: 8px; flex-wrap: wrap; min-height: 22px; }
 
 .menu-tag {
   font-size: 0.65rem;
@@ -1001,7 +1031,7 @@ h1, h2, h3, h4 {
 }
 
 .menu-notice {
-  margin-top: 48px;
+  margin-top: 56px;
   padding: 24px 28px;
   background: var(--bg-dark);
   border: 1px solid var(--border-card);
@@ -1042,7 +1072,7 @@ h1, h2, h3, h4 {
   margin-bottom: 32px;
 }
 
-/* Form fields (worker-injected) */
+/* Form fields */
 .contact-form label {
   display: block;
   font-size: 0.8rem;
@@ -1112,8 +1142,6 @@ h1, h2, h3, h4 {
   padding: 28px;
 }
 
-/* Empty reservations block (no integration set) is removed by worker,
-   but guard here too just in case */
 .contact-reservations-block:empty { display: none; }
 
 .contact-info__heading {
@@ -1273,9 +1301,7 @@ h1, h2, h3, h4 {
 }
 
 /* ── Ornamental Divider ─────────────────────────────────── */
-.section::after {
-  content: none;
-}
+.section::after { content: none; }
 
 /* ── Scroll animations ──────────────────────────────────── */
 @keyframes fadeUp {
@@ -1297,7 +1323,6 @@ h1, h2, h3, h4 {
   .catering-badge:nth-child(3) { grid-column: auto; max-width: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .contact-layout { grid-template-columns: 1fr; }
-  .contact-info-col { }
 }
 
 @media (max-width: 768px) {
@@ -1340,6 +1365,8 @@ h1, h2, h3, h4 {
   .footer-col--brand { padding-bottom: 24px; border-bottom: 1px solid var(--border-card); }
 
   .menu-grid { grid-template-columns: 1fr; }
+  .menu-section-group { margin-bottom: 40px; }
+  .menu-section__heading { font-size: 1.25rem; }
 
   .contact-form-card { padding: 32px 24px; }
 

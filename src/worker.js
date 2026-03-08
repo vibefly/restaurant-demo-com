@@ -92,21 +92,6 @@ async function renderPage(env, url) {
         modifiedHtml = modifiedHtml.replace('</head>', `${ogTags}\n${inlineScripts}\n</head>`);
 
         // ── Integration HTML fragments ───────────────────────────────────────────
-        //
-        // RESERVE pattern:
-        //   - Static fallback elements (.hero-reserve-btn, .header-cta,
-        //     .reservation-cta-fallback) are ALWAYS removed by the rewriter.
-        //   - When hasReservations is TRUE, integration buttons are injected
-        //     into the named slots instead.
-        //   - When hasReservations is FALSE, nothing is injected → no reserve
-        //     CTAs appear anywhere on the page.
-        //
-        // ORDER pattern (identical logic):
-        //   - Static fallback elements (.order-online-btn) are ALWAYS removed.
-        //   - When hasOrder is TRUE, integration buttons are injected into the
-        //     named slots instead.
-        //   - When hasOrder is FALSE, nothing is injected → no order CTAs
-        //     appear anywhere on the page.
 
         // Header nav: integration buttons only when URLs are set
         let integNavHtml = '';
@@ -117,11 +102,7 @@ async function renderPage(env, url) {
             integNavHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve</a>`;
         }
 
-        // Hero CTA group:
-        //   - When hasReservations is TRUE: inject reserve integration button.
-        //   - When hasOrder is TRUE: inject order integration button.
-        //   - Static fallbacks (.hero-reserve-btn, .order-online-btn) are
-        //     always removed below regardless of URL presence.
+        // Hero CTA group
         let integHeroHtml = '';
         if (hasReservations) {
             integHeroHtml += `<a class="btn btn--primary btn--lg integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">${escHtml(content.hero && content.hero.ctaText ? content.hero.ctaText : 'Reserve a Table')}</a>`;
@@ -130,9 +111,7 @@ async function renderPage(env, url) {
             integHeroHtml += `<a class="btn btn--ghost btn--lg integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Page-level hero (contact/menu):
-        //   - Reserve button shown on /contact only when hasReservations.
-        //   - Order button shown on /menu only when hasOrder.
+        // Page-level hero (contact/menu)
         let integPageHtml = '';
         if (hasReservations && pathname === '/contact') {
             integPageHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
@@ -141,10 +120,7 @@ async function renderPage(env, url) {
             integPageHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
         }
 
-        // Reservation CTA section:
-        //   - When hasReservations is TRUE: inject integration button.
-        //   - When hasReservations is FALSE: inject nothing (static fallback
-        //     .reservation-cta-fallback is always removed below).
+        // Reservation CTA section
         let integCtaHtml = '';
         if (hasReservations) {
             const ctaLabel = escHtml(
@@ -155,7 +131,6 @@ async function renderPage(env, url) {
         }
 
         // Contact page: reservations info block
-        // Only rendered when reservations_url is set
         let reservationsBlockHtml = '';
         if (hasReservations) {
             reservationsBlockHtml = `<h3 class="contact-info__heading">Reservations</h3><p class="contact-private-text">Book your table quickly and easily through our online reservation system.</p><a class="btn btn--primary" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
@@ -167,6 +142,11 @@ async function renderPage(env, url) {
         ).join('');
 
         const sectionsHtml = sections.map((sec, idx) => renderSection(sec, idx)).join('\n');
+
+        // ── Menu tabs & panels (new structure) ──────────────────────────────────
+        const menus = (pageData && pageData.menus) || [];
+        const menuTabsHtml   = renderMenuTabs(menus);
+        const menuPanelsHtml = renderMenuPanels(menus);
 
         // Form fields
         let fieldsHtml = '';
@@ -202,7 +182,7 @@ async function renderPage(env, url) {
         const hours      = (content.contact && content.contact.hours) || [];
         const hoursHtml  = `<strong>Hours</strong>${hours.map(h => `<span>${escHtml(h)}</span>`).join('')}`;
 
-        // Footer service links (from first section with non-testimonial items)
+        // Footer service links
         const footerSvc = sections.find(s => s.items && s.items.length > 0 && !s.items[0].quote);
         const footerSvcHtml = footerSvc ? footerSvc.items.map(item =>
             `<li><a href="#${escAttr(footerSvc.id || 'services')}">${escHtml(item.title || '')}</a></li>`
@@ -212,8 +192,6 @@ async function renderPage(env, url) {
             .on('body', {
                 element(el) {
                     const cls = el.getAttribute('class') || '';
-                    // Add has-reserve-integration / has-order-integration classes
-                    // so CSS can target dependent elements if needed
                     const extra = [
                         hasReservations ? 'has-reserve-integration' : '',
                         hasOrder        ? 'has-order-integration'   : '',
@@ -287,6 +265,13 @@ async function renderPage(env, url) {
                     if (content.footer && content.footer.copyright) el.setInnerContent(content.footer.copyright);
                 }
             })
+            // ── Menu tabs & panels ───────────────────────────────────────────────
+            .on('[data-content-menu-tabs]', {
+                element(el) { el.setInnerContent(menuTabsHtml, { html: true }); }
+            })
+            .on('[data-content-menu-panels]', {
+                element(el) { el.setInnerContent(menuPanelsHtml, { html: true }); }
+            })
             // ── Integration injection points ─────────────────────────────────────
             .on('[data-content-integrations-nav]', {
                 element(el) { el.setInnerContent(integNavHtml, { html: true }); }
@@ -300,10 +285,8 @@ async function renderPage(env, url) {
             .on('[data-content-integrations-cta]', {
                 element(el) {
                     if (integCtaHtml) {
-                        // Integration URL is set: inject the integration button
                         el.replace(integCtaHtml, { html: true });
                     } else {
-                        // No integration URL: remove the span entirely
                         el.remove();
                     }
                 }
@@ -313,15 +296,11 @@ async function renderPage(env, url) {
                     if (reservationsBlockHtml) {
                         el.setInnerContent(reservationsBlockHtml, { html: true });
                     } else {
-                        // Remove the empty block entirely so it takes no space
                         el.remove();
                     }
                 }
             })
             // ── Static reserve fallback elements — ALWAYS removed ────────────────
-            // When hasReservations is TRUE they are superseded by the integration
-            // buttons injected above. When hasReservations is FALSE there should be
-            // no reservation CTAs on the page at all.
             .on('.hero-reserve-btn', {
                 element(el) { el.remove(); }
             })
@@ -332,9 +311,6 @@ async function renderPage(env, url) {
                 element(el) { el.remove(); }
             })
             // ── Static order fallback elements — ALWAYS removed ──────────────────
-            // When hasOrder is TRUE they are superseded by the integration buttons
-            // injected above. When hasOrder is FALSE there should be no order CTAs
-            // on the page at all.
             .on('.order-online-btn', {
                 element(el) { el.remove(); }
             });
@@ -352,6 +328,82 @@ async function renderPage(env, url) {
         return env.ASSETS.fetch(new Request(url.href));
     }
 }
+
+// ── Menu rendering helpers ─────────────────────────────────────────────────────
+
+/**
+ * Render the top-level tab bar from the menus array.
+ * First menu is active by default.
+ */
+function renderMenuTabs(menus) {
+    if (!menus || menus.length === 0) return '';
+    return menus.map((menu, idx) => {
+        const active = idx === 0 ? ' active' : '';
+        const id     = escAttr(menu.id || String(idx));
+        const label  = escHtml(menu.label || menu.id || `Menu ${idx + 1}`);
+        return `<button class="menu-tab${active}" role="tab" data-tab="${id}" aria-controls="menu-panel-${id}" aria-selected="${idx === 0 ? 'true' : 'false'}">${label}</button>`;
+    }).join('');
+}
+
+/**
+ * Render all menu panels. Each panel contains one or more named sections
+ * (e.g. Starters, Mains) rendered as sub-groups within the panel.
+ * First panel is active by default.
+ */
+function renderMenuPanels(menus) {
+    if (!menus || menus.length === 0) return '';
+    return menus.map((menu, idx) => {
+        const active = idx === 0 ? ' active' : '';
+        const id     = escAttr(menu.id || String(idx));
+        const sectionsHtml = (menu.sections || []).map(sec => renderMenuSection(sec)).join('');
+        return `<div class="menu-panel${active}" id="menu-panel-${id}" role="tabpanel">${sectionsHtml}</div>`;
+    }).join('');
+}
+
+/**
+ * Render a single named section (e.g. "Starters") within a menu panel.
+ * Uses a section heading then the standard menu-grid of items.
+ */
+function renderMenuSection(sec) {
+    const nameHtml = sec.name
+        ? `<h2 class="menu-section__heading">${escHtml(sec.name)}</h2>`
+        : '';
+
+    const items = (sec.items || []).map(item => {
+        // Choose tag modifier class based on common tag values
+        const tagClass = menuTagClass(item.tag || '');
+        const tagHtml  = item.tag
+            ? `<div class="menu-item__tags"><span class="menu-tag${tagClass}">${escHtml(item.tag)}</span></div>`
+            : `<div class="menu-item__tags"></div>`;
+
+        return `<div class="menu-item">
+  <div class="menu-item__header">
+    <h3 class="menu-item__name">${escHtml(item.name || '')}</h3>
+    <span class="menu-item__price">${escHtml(item.price || '')}</span>
+  </div>
+  <p class="menu-item__desc">${escHtml(item.desc || '')}</p>
+  ${tagHtml}
+</div>`;
+    }).join('');
+
+    const gridHtml = items
+        ? `<div class="menu-grid">${items}</div>`
+        : '';
+
+    return `<div class="menu-section-group">${nameHtml}${gridHtml}</div>`;
+}
+
+/**
+ * Return an additional CSS class for certain tag values that warrant
+ * the darker/highlighted treatment (Signature, House Specialty, Chef's Choice,
+ * House Cocktail, By the Bottle).
+ */
+function menuTagClass(tag) {
+    const dark = ['Signature', 'House Specialty', "Chef's Choice", 'House Cocktail', 'By the Bottle', 'Selection'];
+    return dark.includes(tag) ? ' menu-tag--dark' : '';
+}
+
+// ── Home page section rendering ────────────────────────────────────────────────
 
 function renderSection(sec, idx) {
     const isTestimonial = sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
@@ -388,6 +440,8 @@ function renderSection(sec, idx) {
 
     return `<section${idAttr} class="section section-visible${useAlt ? ' section--alt' : ''}"><div class="container"><div class="section__header">${headerHtml}</div>${gridHtml}</div></section>`;
 }
+
+// ── Utilities ──────────────────────────────────────────────────────────────────
 
 function computeTurnstileTheme(theme) {
     if (!theme) return 'light';
