@@ -324,7 +324,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--accent-primary);
+  color: rgba(240,232,220,0.9);
   margin-bottom: 24px;
   display: flex;
   align-items: center;
@@ -337,8 +337,8 @@ h1, h2, h3, h4 {
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--accent-primary);
-  opacity: 0.6;
+  background: rgba(240,232,220,0.4);
+  opacity: 1;
 }
 
 .hero__title {
