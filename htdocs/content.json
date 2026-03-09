@@ -50,12 +50,12 @@
     "phone": "(555) 210-4830",
     "phoneHref": "tel:+15552104830",
     "email": "hello@emberandoak.com",
-    "address": "18 Harlow Street, The Merchant Quarter",
+    "address": "18 Harlow Street, New York NY",
     "year": "2019",
     "address1": "18 Harlow Street",
     "address2": "",
-    "city": "The Merchant Quarter",
-    "state": "",
+    "city": "New York",
+    "state": "NY",
     "zip": ""
   },
   "hero": {
