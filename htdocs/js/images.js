@@ -49,6 +49,8 @@
       slide.style.setProperty('--i', i);
       container.appendChild(slide);
     });
+
+    container.closest('.hero')?.classList.add('hero--has-bg');
   }
 
   /* ── Chef: single photo ────────────────────────────────────────────── */
