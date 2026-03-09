@@ -352,7 +352,7 @@ h1, h2, h3, h4 {
 
 .hero__subtext {
   font-size: 1.15rem;
-  color: var(--text-secondary);
+  color: rgba(240,232,220,0.9);
   font-weight: 300;
   margin-bottom: 48px;
   letter-spacing: 0.05em;
