@@ -42,8 +42,8 @@
     }
   ],
   "integrations": {
-    "reservations_url": "",
-    "order_url": ""
+    "reservations_url": "https://resy.com",
+    "order_url": "https://doordash.com"
   },
   "business": {
     "name": "Ember & Oak",
