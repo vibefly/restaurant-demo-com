@@ -1708,9 +1708,9 @@ h1, h2, h3, h4 {
 
 /* Hero already has position:relative — ensure children stack */
 .hero { position: relative; }
-.hero .hero__bg-overlay,
+.hero .hero__bg-overlay { position: absolute; inset: 0; z-index: 1; }
 .hero .hero__content,
-.hero .hero__scroll-hint { position: relative; z-index: 1; }
+.hero .hero__scroll-hint { position: relative; z-index: 2; }
 
 /* Chef image slot — photo replaces the placeholder */
 .chef-image-frame { overflow: hidden; }
