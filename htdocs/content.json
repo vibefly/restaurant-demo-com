@@ -43,7 +43,7 @@
   ],
   "integrations": {
     "reservations_url": "https://resy.com",
-    "order_url": "https://resy.com"
+    "order_url": ""
   },
   "business": {
     "name": "Ember & Oak",
