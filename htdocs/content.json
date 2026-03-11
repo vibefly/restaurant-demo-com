@@ -669,7 +669,7 @@
       }
     ],
     "submitLabel": "Send Message",
-    "turnstileSiteKey": "",
+    "turnstileSiteKey": "0x4AAAAAACo5UqquzJYfy7yE",
     "statusMessages": [],
     "deliveredMessage": "Your message has been received.",
     "thankYouHeading": "Message Received!",
