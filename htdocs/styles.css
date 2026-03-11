@@ -367,7 +367,7 @@ h1, h2, h3, h4 {
 }
 
 .hero__cta-group > span[data-content-integrations-hero]:empty { display: none; }
-.hero__cta-group > span[data-content-integrations-hero] { display: inline-flex; gap: 16px; align-items: center; }
+.hero__cta-group > span[data-content-integrations-hero] { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
 
 .hero__cta-group .integration-btn {
   display: inline-flex;
