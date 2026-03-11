@@ -395,12 +395,12 @@ h1, h2, h3, h4 {
 
 .hero__cta-group .integration-btn--order {
   background: transparent;
-  color: var(--text-primary);
-  border: 2px solid rgba(240,232,220,0.4);
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
 }
 .hero__cta-group .integration-btn--order:hover {
-  border-color: var(--text-primary);
-  background: rgba(240,232,220,0.08);
+  background: var(--accent-primary);
+  color: var(--bg-dark);
 }
 
 .hero__scroll-hint {
