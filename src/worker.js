@@ -211,7 +211,7 @@ async function renderPage(env, url) {
         let tsHtml = '';
         if (formCfg.turnstileSiteKey) {
             const tsTheme = computeTurnstileTheme(content.theme);
-            tsHtml = `<div id="cf-turnstile" data-sitekey="${escAttr(formCfg.turnstileSiteKey)}" data-theme="${tsTheme}"></div>`;
+            tsHtml = `<div class="cf-turnstile" data-sitekey="${escAttr(formCfg.turnstileSiteKey)}" data-theme="${tsTheme}"></div>`;
         }
 
         const serviceAreas   = (content.contact && content.contact.serviceAreas) || [];
