@@ -213,9 +213,8 @@
   </footer>
 
   <script src="/js/images.js"></script>
-  <script src="/js/lucide.min.js"></script>
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
   <script>
-    lucide.createIcons();
 
     // Mobile nav toggle
     const toggle = document.querySelector('.nav-toggle');
