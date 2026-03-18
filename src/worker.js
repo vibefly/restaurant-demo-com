@@ -151,8 +151,11 @@ function buildCommonHead({ titleText, description, canonical, biz, formCfg, site
   ${inlineScripts}`;
 }
 
-function buildHeader({ navHtml, logoName, logoTld, solid = false, integNavHtml, ctaHref, ctaText }) {
+function buildHeader({ navHtml, logoName, logoTld, solid = false, integNavHtml, ctaHref, ctaText, showCta = true }) {
     const solidClass = solid ? ' site-header--solid' : '';
+    const ctaHtml = showCta
+        ? `\n    <a class="header-cta btn btn--primary" href="${escAttr(ctaHref)}">${escHtml(ctaText)}</a>`
+        : '';
     return `<header class="site-header${solidClass}" id="top">
   <div class="header-inner container">
     <a class="logo" href="/">
@@ -164,8 +167,7 @@ function buildHeader({ navHtml, logoName, logoTld, solid = false, integNavHtml, 
     <nav class="site-nav" aria-label="Main navigation">
       <ul>${navHtml}</ul>
     </nav>
-    <div class="header-integrations">${integNavHtml}</div>
-    <a class="header-cta btn btn--primary" href="${escAttr(ctaHref)}">${escHtml(ctaText)}</a>
+    <div class="header-integrations">${integNavHtml}</div>${ctaHtml}
   </div>
 </header>`;
 }
@@ -307,7 +309,7 @@ function buildIndexPage({ content, biz, formCfg, siteImages, navHtml, logoName, 
     }
 
     const head = buildCommonHead({ titleText, description, canonical, biz, formCfg, siteImages });
-    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: false, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve' });
+    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: false, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve', showCta: !hasReservations });
     const footerHtml = buildFooter({ navHtml, logoName, logoTld, footerAbout: footer.about || '', copyright: footer.copyright || '', hoursHtml, phone, phoneHref, address, showEmail: false });
 
     return `<!DOCTYPE html>
@@ -460,7 +462,7 @@ function buildMenuPage({ content, biz, formCfg, siteImages, navHtml, logoName, l
     }
 
     const head = buildCommonHead({ titleText, description, canonical, biz, formCfg, siteImages });
-    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve' });
+    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve', showCta: !hasReservations });
     const footerHtml = buildFooter({ navHtml, logoName, logoTld, footerAbout: footer.about || '', copyright: footer.copyright || '', hoursHtml, phone, phoneHref, email, emailHref, address, showEmail: true });
 
     return `<!DOCTYPE html>
@@ -549,7 +551,7 @@ function buildContactPage({ content, biz, formCfg, siteImages, navHtml, logoName
     }
 
     const head = buildCommonHead({ titleText, description, canonical, biz, formCfg, siteImages, includeTurnstile: !!formCfg.turnstileSiteKey });
-    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve' });
+    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve', showCta: !hasReservations });
     const footerHtml = buildFooter({ navHtml, logoName, logoTld, footerAbout: footer.about || '', copyright: footer.copyright || '', hoursHtml, phone, phoneHref, address, showEmail: false });
 
     return `<!DOCTYPE html>
@@ -692,7 +694,7 @@ function buildEventsPage({ content, biz, formCfg, siteImages, navHtml, logoName,
     }
 
     const head = buildCommonHead({ titleText, description, canonical, biz, formCfg, siteImages });
-    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve' });
+    const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve', showCta: !hasReservations });
     const footerHtml = buildFooter({ navHtml, logoName, logoTld, footerAbout: footer.about || '', copyright: footer.copyright || '', hoursHtml, phone, phoneHref, email, emailHref, address, showEmail: true });
 
     return `<!DOCTYPE html>
