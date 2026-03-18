@@ -1836,6 +1836,39 @@ h1, h2, h3, h4 {
     opacity: 1;
 }
 
+/* === Cookie Notice === */
+
+.cookie-notice {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-dark);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-card);
+  padding: 0.875rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 9999;
+  font-size: 0.85rem;
+}
+.cookie-notice p { margin: 0; }
+.cookie-notice a { color: var(--accent-primary); text-decoration: underline; }
+.cookie-notice__btn {
+  background: var(--accent-primary);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.cookie-notice__btn:hover { opacity: 0.85; }
+
 /* === WCAG 2.1 AA — Accessibility === */
 
 /* Skip navigation link — hidden until focused by keyboard */

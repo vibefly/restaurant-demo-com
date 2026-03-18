@@ -249,6 +249,12 @@ function buildFormFields(formCfg, tsTheme) {
     return fieldsHtml + tsHtml;
 }
 
+const COOKIE_NOTICE = `<div id="cookie-notice" class="cookie-notice" role="region" aria-label="Cookie notice">
+  <p>This site uses cookies for security and spam protection. <a href="/privacy">Learn more</a></p>
+  <button class="cookie-notice__btn" onclick="dismissCookieNotice()">OK</button>
+</div>
+<script>if(localStorage.getItem('cnd'))document.getElementById('cookie-notice').remove();function dismissCookieNotice(){localStorage.setItem('cnd','1');document.getElementById('cookie-notice').remove();}<\/script>`;
+
 const NAV_TOGGLE_SCRIPT = `<script>
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
@@ -455,6 +461,7 @@ ${NAV_TOGGLE_SCRIPT}
   }, { threshold: 0.12 });
   document.querySelectorAll('.section, .event-card, .catering-badge, .chef-image-frame').forEach(el => observer.observe(el));
 </script>
+${COOKIE_NOTICE}
 </body>
 </html>`;
 }
@@ -537,6 +544,7 @@ ${NAV_TOGGLE_SCRIPT}
     });
   }
 </script>
+${COOKIE_NOTICE}
 </body>
 </html>`;
 }
@@ -696,6 +704,7 @@ ${NAV_TOGGLE_SCRIPT}
     });
   }
 </script>
+${COOKIE_NOTICE}
 </body>
 </html>`;
 }
@@ -787,6 +796,7 @@ ${NAV_TOGGLE_SCRIPT}
   }, { threshold: 0.08 });
   document.querySelectorAll('.event-page-card, .events-private-cta__badge').forEach(el => observer.observe(el));
 </script>
+${COOKIE_NOTICE}
 </body>
 </html>`;
 }
@@ -1025,6 +1035,7 @@ ${headerHtml}
 ${footerHtml}
 
 ${NAV_TOGGLE_SCRIPT}
+${COOKIE_NOTICE}
 </body>
 </html>`;
 
