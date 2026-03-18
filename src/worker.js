@@ -444,7 +444,7 @@ ${NAV_TOGGLE_SCRIPT}
 </html>`;
 }
 
-function buildMenuPage({ content, biz, formCfg, siteImages, navHtml, logoName, logoTld, bodyClasses, integNavHtml, footer, hasReservations, hasOrder, orderUrl, phone, phoneHref, email, emailHref, hoursHtml, url }) {
+function buildMenuPage({ content, biz, formCfg, siteImages, navHtml, logoName, logoTld, bodyClasses, integNavHtml, footer, hasReservations, reservationsUrl, hasOrder, orderUrl, phone, phoneHref, email, emailHref, hoursHtml, url }) {
     const pageData    = (content.pages && content.pages.menu) || {};
     const titleText   = pageData.title       || (content.meta && content.meta.title) || biz.name || '';
     const description = pageData.description || (content.meta && content.meta.description) || '';
@@ -457,9 +457,8 @@ function buildMenuPage({ content, biz, formCfg, siteImages, navHtml, logoName, l
     const menuPanelsHtml = renderMenuPanels(menus);
 
     let pageIntegHtml = '';
-    if (hasOrder) {
-        pageIntegHtml = `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
-    }
+    if (hasReservations) pageIntegHtml += `<a class="integration-btn integration-btn--reserve" href="${escAttr(reservationsUrl)}" target="_blank" rel="noopener">Reserve a Table</a>`;
+    if (hasOrder)        pageIntegHtml += `<a class="integration-btn integration-btn--order" href="${escAttr(orderUrl)}" target="_blank" rel="noopener">Order Online</a>`;
 
     const head = buildCommonHead({ titleText, description, canonical, biz, formCfg, siteImages });
     const headerHtml = buildHeader({ navHtml, logoName, logoTld, solid: true, integNavHtml, ctaHref: hero.ctaHref || '/contact', ctaText: hero.ctaText || 'Reserve', showCta: !hasReservations });

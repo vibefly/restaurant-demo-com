@@ -123,6 +123,8 @@
       slide.style.setProperty('--i', i);
       container.appendChild(slide);
     });
+
+    container.closest('.page-hero')?.classList.add('page-hero--has-bg');
   }
 
   /* ── Init on DOM ready ─────────────────────────────────────────────── */
