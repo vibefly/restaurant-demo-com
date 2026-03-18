@@ -31,6 +31,7 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
+    <div id="page-hero-images-slot" class="kb-container" data-slot="event"></div>
     <div class="page-hero__overlay"></div>
     <div class="container page-hero__content">
       <p class="hero__label" data-content="pages.events.label">Special Occasions</p>
@@ -116,9 +117,9 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="/js/images.js"></script>
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
   <script>
-    lucide.createIcons();
     const toggle = document.querySelector('.nav-toggle');
     const nav    = document.querySelector('.site-nav');
     if (toggle && nav) {

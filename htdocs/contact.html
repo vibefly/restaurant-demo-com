@@ -33,6 +33,7 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
+    <div id="page-hero-images-slot" class="kb-container" data-slot="hero"></div>
     <div class="page-hero__overlay"></div>
     <div class="container page-hero__content">
       <p class="hero__label" data-content="pages.contact.label">Get in Touch</p>
@@ -144,9 +145,9 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="/js/images.js"></script>
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
   <script>
-    lucide.createIcons();
 
     // Mobile nav toggle
     const toggle = document.querySelector('.nav-toggle');
