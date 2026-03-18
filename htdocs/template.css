@@ -1770,3 +1770,68 @@ h1, h2, h3, h4 {
 .site-gallery__item:hover img {
   transform: scale(1.06);
 }
+
+/* ---------- Legal Pages ---------- */
+.legal-page {
+    padding: 8rem 0 5rem;
+    min-height: 60vh;
+}
+
+.legal-page h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+}
+
+.legal-page__date {
+    font-size: 0.85rem;
+    color: var(--color-text-muted, #888);
+    margin-bottom: 1.5rem;
+}
+
+.legal-page__intro {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary, #555);
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.1));
+}
+
+.legal-section {
+    margin-bottom: 2rem;
+}
+
+.legal-section h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+}
+
+.legal-section p {
+    color: var(--color-text-secondary, #555);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.footer-bottom__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.footer-legal-links a {
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.footer-legal-links a:hover {
+    opacity: 1;
+}
