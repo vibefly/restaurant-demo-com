@@ -12,7 +12,7 @@
  *
  * Ken Burns (CSS-driven):
  *   Each .kb-slide gets --n (total slides) and --i (index) as inline CSS vars.
- *   A single @keyframes kb-cycle in styles.css handles all N values.
+ *   A single @keyframes kb-cycle in template.css handles all N values.
  *   Duration per slide = 8s; total cycle = 8s × N.
  */
 

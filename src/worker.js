@@ -144,7 +144,7 @@ function buildCommonHead({ titleText, description, canonical, biz, formCfg, site
   <title>${escHtml(titleText)}</title>
   <meta name="description" content="${escAttr(description)}" />
   ${ogTags}
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/template.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />${turnstileScript}
