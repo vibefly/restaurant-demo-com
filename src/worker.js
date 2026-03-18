@@ -164,10 +164,10 @@ function buildHeader({ navHtml, logoName, logoTld, solid = false, integNavHtml, 
     <a class="logo" href="/">
       <span class="logo__name">${logoName}</span><span class="logo__tld">${logoTld}</span>
     </a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
-    <nav class="site-nav" aria-label="Main navigation">
+    <nav class="site-nav" id="main-nav" aria-label="Main navigation">
       <ul>${navHtml}</ul>
     </nav>
     <div class="header-integrations">${integNavHtml}</div>${ctaHtml}
@@ -219,6 +219,8 @@ function buildFooter({ navHtml, logoName, logoTld, footerAbout, copyright, hours
 </footer>`;
 }
 
+const AUTOCOMPLETE_MAP = { name: 'name', email: 'email', phone: 'tel', company: 'organization' };
+
 function buildFormFields(formCfg, tsTheme) {
     let fieldsHtml = '';
     if (formCfg.fields) {
@@ -234,7 +236,8 @@ function buildFormFields(formCfg, tsTheme) {
                 ).join('');
                 inputHtml = `<select id="${id}" name="${escAttr(field.name)}"${req}><option value="">${escHtml(field.placeholder || 'Select\u2026')}</option>${opts}</select>`;
             } else {
-                inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${req}>`;
+                const autocomplete = AUTOCOMPLETE_MAP[field.name] ? ` autocomplete="${AUTOCOMPLETE_MAP[field.name]}"` : '';
+                inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${autocomplete}${req}>`;
             }
             return `<label for="${id}">${escHtml(field.label || '')}</label>${inputHtml}`;
         }).join('\n        ');
@@ -325,8 +328,11 @@ function buildIndexPage({ content, biz, formCfg, siteImages, navHtml, logoName, 
 ${head}
 </head>
 <body class="${bodyClasses}">
+<a class="skip-nav" href="#main-content">Skip to main content</a>
 
 ${headerHtml}
+
+<main id="main-content">
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -430,6 +436,8 @@ ${headerHtml}
   </div>
 </section>
 
+</main>
+
 ${footerHtml}
 
 <script src="/js/images.js" defer></script>
@@ -477,8 +485,11 @@ function buildMenuPage({ content, biz, formCfg, siteImages, navHtml, logoName, l
 ${head}
 </head>
 <body class="${bodyClasses}">
+<a class="skip-nav" href="#main-content">Skip to main content</a>
 
 ${headerHtml}
+
+<main id="main-content">
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -502,6 +513,8 @@ ${headerHtml}
     </div>
   </div>
 </section>
+
+</main>
 
 ${footerHtml}
 
@@ -566,8 +579,11 @@ function buildContactPage({ content, biz, formCfg, siteImages, navHtml, logoName
 ${head}
 </head>
 <body class="${bodyClasses}">
+<a class="skip-nav" href="#main-content">Skip to main content</a>
 
 ${headerHtml}
+
+<main id="main-content">
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -611,14 +627,14 @@ ${headerHtml}
         <div class="contact-info-block">
           <h3 class="contact-info__heading">Find Us</h3>
           <div class="contact-info-item">
-            <i data-lucide="map-pin"></i>
+            <i data-lucide="map-pin" aria-hidden="true"></i>
             <div>
               <strong>Address</strong>
               <span>${escHtml(address)}</span>
             </div>
           </div>
           <div class="contact-info-item">
-            <i data-lucide="phone"></i>
+            <i data-lucide="phone" aria-hidden="true"></i>
             <div>
               <strong>Phone</strong>
               <a href="${escAttr(phoneHref)}">${escHtml(phone)}</a>
@@ -641,6 +657,8 @@ ${headerHtml}
     </div>
   </div>
 </section>
+
+</main>
 
 ${footerHtml}
 
@@ -709,8 +727,11 @@ function buildEventsPage({ content, biz, formCfg, siteImages, navHtml, logoName,
 ${head}
 </head>
 <body class="${bodyClasses}">
+<a class="skip-nav" href="#main-content">Skip to main content</a>
 
 ${headerHtml}
+
+<main id="main-content">
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -751,6 +772,8 @@ ${headerHtml}
   </div>
 </section>
 
+</main>
+
 ${footerHtml}
 
 <script src="/js/images.js"></script>
@@ -784,10 +807,11 @@ function renderSection(sec, idx) {
     if (sec.items && sec.items.length > 0) {
         if (isTestimonial) {
             const cards = sec.items.map(item => {
-                const stars = Array(item.stars || 5).fill(
-                    `<svg width="20" height="20" viewBox="0 0 20 20" fill="var(--color-star,#c9943a)"><path d="M10 1l2.5 5.5H18l-4.5 3.5 1.5 5.5L10 13l-5 2.5 1.5-5.5L2 6.5h5.5z"/></svg>`
+                const starCount = item.stars || 5;
+                const stars = Array(starCount).fill(
+                    `<svg width="20" height="20" viewBox="0 0 20 20" fill="var(--color-star,#c9943a)" aria-hidden="true"><path d="M10 1l2.5 5.5H18l-4.5 3.5 1.5 5.5L10 13l-5 2.5 1.5-5.5L2 6.5h5.5z"/></svg>`
                 ).join('');
-                return `<div class="testimonial-card"><div class="testimonial-card__stars">${stars}</div><blockquote class="testimonial-card__quote">"${escHtml(item.quote || '')}"</blockquote><div class="testimonial-card__author"><strong>${escHtml(item.author || '')}</strong><span>${escHtml(item.role || '')}</span></div></div>`;
+                return `<div class="testimonial-card"><div class="testimonial-card__stars" aria-label="${starCount} out of 5 stars">${stars}</div><blockquote class="testimonial-card__quote">"${escHtml(item.quote || '')}"</blockquote><div class="testimonial-card__author"><strong>${escHtml(item.author || '')}</strong><span>${escHtml(item.role || '')}</span></div></div>`;
             }).join('');
             gridHtml = `<div class="testimonials-grid">${cards}</div>`;
         } else {
@@ -985,10 +1009,11 @@ async function renderLegalPage(env, url) {
     <script src="/js/images.js" defer></script>
 </head>
 <body class="content-loaded">
+<a class="skip-nav" href="#main-content">Skip to main content</a>
 
 ${headerHtml}
 
-<main class="legal-page">
+<main id="main-content" class="legal-page">
     <div class="container">
         <h1>${escHtml(heading)}</h1>
         ${effectiveDate ? `<p class="legal-page__date">Effective date: ${escHtml(effectiveDate)}</p>` : ''}

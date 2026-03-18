@@ -1351,9 +1351,9 @@ h1, h2, h3, h4 {
   outline: none;
   appearance: none;
 }
-.contact-form input:focus,
-.contact-form textarea:focus,
-.contact-form select:focus {
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible,
+.contact-form select:focus-visible {
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 3px rgba(201,148,58,0.15);
 }
@@ -1834,4 +1834,31 @@ h1, h2, h3, h4 {
 
 .footer-legal-links a:hover {
     opacity: 1;
+}
+
+/* === WCAG 2.1 AA — Accessibility === */
+
+/* Skip navigation link — hidden until focused by keyboard */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 10000;
+  border-radius: 0 0 4px 4px;
+  text-decoration: none;
+}
+.skip-nav:focus {
+  top: 0;
+}
+
+/* Global keyboard focus indicator — only shown when navigating by keyboard */
+*:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
