@@ -1,0 +1,14 @@
+{
+  "editable_files": {
+    "htdocs/content.json": "All site content — business info, menu items, chef bio, events, testimonials, catering stats, contact hours, form configuration, and footer text",
+    "htdocs/styles.css": "All styles with CSS custom properties for theming — colors, typography, spacing, and component styles"
+  },
+  "protected_files": [
+    "htdocs/index.html",
+    "htdocs/menu.html",
+    "htdocs/contact.html",
+    "htdocs/events.html",
+    "src/worker.js",
+    "coming-soon.html"
+  ]
+}

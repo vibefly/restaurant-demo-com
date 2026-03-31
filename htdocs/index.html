@@ -1,48 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1a1a2e;
-            color: #f5f5f5;
-            text-align: center;
-            padding: 2rem;
-        }
-        .container { max-width: 500px; }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #aaa;
-            line-height: 1.6;
-        }
-        .bar {
-            width: 60px;
-            height: 4px;
-            background: #4A90D9;
-            border-radius: 2px;
-            margin: 1.5rem auto;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
+  <script src="/js/images.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Restaurant</h1>
-        <div class="bar"></div>
-        <p>Our new website is coming soon.</p>
+
+  <!-- NAV -->
+  <header class="site-header" id="top">
+    <div class="header-inner container">
+      <a class="logo" href="/">
+        <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul data-content-nav></ul>
+      </nav>
+      <!-- Integration nav buttons injected here by worker -->
+      <div class="header-integrations" data-content-integrations-nav></div>
+      <a class="header-cta btn btn--primary" data-content-attr-href="hero.ctaHref" href="/contact" data-content="hero.ctaText">Reserve</a>
     </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div id="hero-images-slot" class="kb-container"></div>
+    <div class="hero__bg-overlay"></div>
+    <div class="hero__content container">
+      <p class="hero__label" data-content="hero.label">Est. 2019</p>
+      <h1 class="hero__title" data-content="hero.title">Where Every Meal Tells a Story</h1>
+      <p class="hero__subtext" data-content="hero.subtext">Artfully crafted cuisine in an intimate, atmospheric setting</p>
+      <div class="hero__cta-group">
+        <a class="btn btn--primary btn--lg hero-reserve-btn" data-content-attr-href="hero.ctaHref" href="/contact" data-content="hero.ctaText">Reserve a Table</a>
+        <a class="btn btn--outline btn--lg" data-content-attr-href="hero.ctaSecondaryHref" href="/menu" data-content="hero.ctaSecondaryText">View Menu</a>
+        <!-- Integration hero buttons injected here by worker -->
+        <span data-content-integrations-hero></span>
+      </div>
+    </div>
+    <div class="hero__scroll-hint">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- DYNAMIC SECTIONS (worker injects) -->
+  <div id="sections-container"></div>
+
+  <!-- CHEF SECTION -->
+  <section class="chef-section section section--alt" id="chef">
+    <div class="container">
+      <div class="chef-layout">
+        <div class="chef-image-col">
+          <div class="chef-image-frame" id="chef-image-slot">
+            <div class="chef-image-placeholder">
+              <i data-lucide="chef-hat"></i>
+            </div>
+          </div>
+        </div>
+        <div class="chef-text-col">
+          <p class="section__label" data-content="pages.home.chef.label">Meet the Chef</p>
+          <h2 class="section-heading" data-content="pages.home.chef.heading">A Culinary Vision</h2>
+          <p class="chef-bio" data-content="pages.home.chef.bio">Our head chef brings over two decades of passion and precision to every dish, drawing inspiration from classical techniques and bold global flavors.</p>
+          <p class="chef-bio chef-bio--secondary" data-content="pages.home.chef.bio2">Every plate is a personal statement — a commitment to honest ingredients elevated by artistry.</p>
+          <div class="chef-signature" data-content="pages.home.chef.name">Chef Marco Vitale</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS SECTION -->
+  <section class="events-section section" id="events">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label" data-content="pages.home.events.label">Special Occasions</p>
+        <h2 class="section-heading" data-content="pages.home.events.heading">Upcoming Events</h2>
+        <p class="section__subheading" data-content="pages.home.events.subheading">Join us for exclusive dining experiences and seasonal celebrations</p>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-card__date">
+            <span class="event-card__day" data-content="pages.home.events.items.0.day">15</span>
+            <span class="event-card__month" data-content="pages.home.events.items.0.month">FRI</span>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__title" data-content="pages.home.events.items.0.title">Wine Pairing Dinner</h3>
+            <p class="event-card__desc" data-content="pages.home.events.items.0.desc">A curated five-course journey with sommelier-selected wines from boutique vineyards.</p>
+            <span class="event-card__tag" data-content="pages.home.events.items.0.tag">Limited Seating</span>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-card__date">
+            <span class="event-card__day" data-content="pages.home.events.items.1.day">22</span>
+            <span class="event-card__month" data-content="pages.home.events.items.1.month">SAT</span>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__title" data-content="pages.home.events.items.1.title">Chef's Table Evening</h3>
+            <p class="event-card__desc" data-content="pages.home.events.items.1.desc">An exclusive eight-seat tasting menu cooked and presented personally by our head chef.</p>
+            <span class="event-card__tag" data-content="pages.home.events.items.1.tag">8 Seats Only</span>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-card__date">
+            <span class="event-card__day" data-content="pages.home.events.items.2.day">29</span>
+            <span class="event-card__month" data-content="pages.home.events.items.2.month">SAT</span>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__title" data-content="pages.home.events.items.2.title">Jazz & Tapas Night</h3>
+            <p class="event-card__desc" data-content="pages.home.events.items.2.desc">Live jazz quartet sets the mood for an evening of shareable small plates and craft cocktails.</p>
+            <span class="event-card__tag" data-content="pages.home.events.items.2.tag">Open Seating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING SECTION -->
+  <section class="catering-section section section--alt" id="catering">
+    <div class="container">
+      <div class="catering-layout">
+        <div class="catering-text-col">
+          <p class="section__label" data-content="pages.home.catering.label">Private Events</p>
+          <h2 class="section-heading" data-content="pages.home.catering.heading">Catering & Private Dining</h2>
+          <p class="catering-desc" data-content="pages.home.catering.desc">Whether it's an intimate gathering or a grand celebration, our catering team brings the full restaurant experience to your venue — with the same dedication to quality and presentation.</p>
+          <ul class="catering-features">
+            <li><i data-lucide="check-circle"></i><span data-content="pages.home.catering.features.0">Corporate events &amp; team dinners</span></li>
+            <li><i data-lucide="check-circle"></i><span data-content="pages.home.catering.features.1">Wedding receptions &amp; rehearsal dinners</span></li>
+            <li><i data-lucide="check-circle"></i><span data-content="pages.home.catering.features.2">Private venue buyouts</span></li>
+            <li><i data-lucide="check-circle"></i><span data-content="pages.home.catering.features.3">Custom menus &amp; dietary accommodations</span></li>
+          </ul>
+          <a href="/contact" class="btn btn--primary" data-content="pages.home.catering.cta">Inquire About Catering</a>
+        </div>
+        <div class="catering-badges-col">
+          <div class="catering-badge">
+            <div class="catering-badge__icon"><i data-lucide="users"></i></div>
+            <div class="catering-badge__num" data-content="pages.home.catering.stat1Num">200+</div>
+            <div class="catering-badge__label" data-content="pages.home.catering.stat1Label">Events Catered</div>
+          </div>
+          <div class="catering-badge">
+            <div class="catering-badge__icon"><i data-lucide="star"></i></div>
+            <div class="catering-badge__num" data-content="pages.home.catering.stat2Num">4.9★</div>
+            <div class="catering-badge__label" data-content="pages.home.catering.stat2Label">Average Rating</div>
+          </div>
+          <div class="catering-badge">
+            <div class="catering-badge__icon"><i data-lucide="calendar"></i></div>
+            <div class="catering-badge__num" data-content="pages.home.catering.stat3Num">12+</div>
+            <div class="catering-badge__label" data-content="pages.home.catering.stat3Label">Years Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT CTA -->
+  <section class="reservation-cta" id="reservations">
+    <div class="reservation-cta__overlay"></div>
+    <div class="container reservation-cta__inner">
+      <p class="section__label" data-content="pages.home.reservation.label">Visit Us</p>
+      <h2 class="section-heading" data-content="pages.home.reservation.heading">Join Us for an Unforgettable Evening</h2>
+      <p class="reservation-cta__sub" data-content="pages.home.reservation.subtext">We recommend reservations, especially on weekends. Walk-ins welcome based on availability.</p>
+      <div class="reservation-cta__actions">
+        <!-- Reserve button: integration link injected by worker when reservations_url is set,
+             static /contact fallback shown when it is not set -->
+        <a class="btn btn--primary btn--lg reservation-cta-fallback" href="/contact" data-content="pages.home.reservation.ctaText">Reserve a Table</a>
+        <!-- Integration CTA injected here by worker (replaces fallback when URL is set) -->
+        <span data-content-integrations-cta></span>
+        <a class="btn btn--ghost btn--lg" data-content-phone href="tel:+15551234567">Call Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="logo logo--footer" href="/">
+          <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+        </a>
+        <p class="footer-about" data-content="footer.about">An intimate dining experience where craft and warmth come together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Navigate</h4>
+        <ul class="footer-links" data-content-nav></ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Hours</h4>
+        <div class="footer-hours" data-content-list="contact.hours"></div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="phone"></i><a data-content-phone href="tel:+15551234567"></a></li>
+          <li><i data-lucide="map-pin"></i><span data-content="business.address"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p data-content-copyright>© 2024 Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('site-nav--open');
+        toggle.classList.toggle('nav-toggle--open');
+      });
+    }
+
+    // Header scroll effect
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('site-header--scrolled', window.scrollY > 60);
+    });
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section, .event-card, .catering-badge, .chef-image-frame').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

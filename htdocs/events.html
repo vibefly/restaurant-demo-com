@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header site-header--solid" id="top">
+    <div class="header-inner container">
+      <a class="logo" href="/">
+        <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul data-content-nav></ul>
+      </nav>
+      <div class="header-integrations" data-content-integrations-nav></div>
+      <a class="header-cta btn btn--primary" href="/contact" data-content="hero.ctaText">Reserve</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div id="page-hero-images-slot" class="kb-container" data-slot="event"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <p class="hero__label" data-content="pages.events.label">Special Occasions</p>
+      <h1 class="page-hero__title" data-content="pages.events.title">Upcoming Events</h1>
+      <p class="page-hero__sub" data-content="pages.events.subtitle">Join us for exclusive dining experiences and seasonal celebrations</p>
+      <div class="page-hero__integrations" data-content-integrations-page></div>
+    </div>
+  </section>
+
+  <!-- EVENTS LISTING -->
+  <section class="events-page-section">
+    <div class="container">
+      <div class="events-page-grid" id="events-list">
+        <!-- Injected by worker -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE EVENTS CTA -->
+  <section class="events-private-cta section section--alt">
+    <div class="container events-private-cta__inner">
+      <div class="events-private-cta__text">
+        <p class="section__label" data-content="pages.events.privateLabel">Private Events</p>
+        <h2 class="section-heading" data-content="pages.events.privateHeading">Host Your Own Event</h2>
+        <p class="events-private-cta__sub" data-content="pages.events.privateSubtext">Interested in a private dinner, corporate gathering, or special celebration? Our events team is ready to create a bespoke experience tailored just for you.</p>
+        <a class="btn btn--primary" href="/contact" data-content="pages.events.privateCtaText">Enquire Now</a>
+      </div>
+      <div class="events-private-cta__badges">
+        <div class="events-private-cta__badge">
+          <i data-lucide="users"></i>
+          <span>Private Hire</span>
+        </div>
+        <div class="events-private-cta__badge">
+          <i data-lucide="utensils"></i>
+          <span>Bespoke Menus</span>
+        </div>
+        <div class="events-private-cta__badge">
+          <i data-lucide="music"></i>
+          <span>Entertainment</span>
+        </div>
+        <div class="events-private-cta__badge">
+          <i data-lucide="star"></i>
+          <span>5-Star Service</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="logo logo--footer" href="/">
+          <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+        </a>
+        <p class="footer-about" data-content="footer.about">An intimate dining experience where craft and warmth come together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Navigate</h4>
+        <ul class="footer-links" data-content-nav></ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Hours</h4>
+        <div class="footer-hours" data-content-list="contact.hours"></div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="phone"></i><a data-content-phone href="tel:+15551234567"></a></li>
+          <li><i data-lucide="mail"></i><a data-content-email href="mailto:info@example.com"></a></li>
+          <li><i data-lucide="map-pin"></i><span data-content="business.address"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p data-content-copyright>© 2024 Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/images.js"></script>
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('site-nav--open');
+        toggle.classList.toggle('nav-toggle--open');
+      });
+    }
+
+    // Fade-in cards as they enter the viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.event-page-card, .events-private-cta__badge').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

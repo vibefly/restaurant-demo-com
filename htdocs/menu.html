@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header site-header--solid" id="top">
+    <div class="header-inner container">
+      <a class="logo" href="/">
+        <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul data-content-nav></ul>
+      </nav>
+      <!-- Integration nav buttons injected here by worker -->
+      <div class="header-integrations" data-content-integrations-nav></div>
+      <a class="header-cta btn btn--primary" href="/contact" data-content="hero.ctaText">Reserve</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div id="page-hero-images-slot" class="kb-container" data-slot="hero"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <p class="hero__label" data-content="pages.menu.label">Our Offerings</p>
+      <h1 class="page-hero__title" data-content="pages.menu.title">The Menu</h1>
+      <p class="page-hero__sub" data-content="pages.menu.subtitle">Seasonal ingredients. Timeless technique.</p>
+      <!-- Integration order button injected here by worker -->
+      <div class="page-hero__integrations" data-content-integrations-page></div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section">
+    <div class="container">
+
+      <!-- Top-level menu tabs (Dinner, Lunch, etc.) — injected by worker -->
+      <div class="menu-tabs" role="tablist" id="menu-tabs-container" data-content-menu-tabs></div>
+
+      <!-- Menu panels — injected by worker -->
+      <div id="menu-panels-container" data-content-menu-panels></div>
+
+      <div class="menu-notice">
+        <p data-content="pages.menu.notice">Menu changes seasonally. Please inform your server of any dietary requirements or allergies. Consuming raw or undercooked items may increase your risk of foodborne illness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="logo logo--footer" href="/">
+          <span class="logo__name" data-content="logo.name">Restaurant</span><span class="logo__tld" data-content="logo.tld">.co</span>
+        </a>
+        <p class="footer-about" data-content="footer.about">An intimate dining experience where craft and warmth come together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Navigate</h4>
+        <ul class="footer-links" data-content-nav></ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Hours</h4>
+        <div class="footer-hours" data-content-list="contact.hours"></div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col__heading">Contact</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="phone"></i><a data-content-phone href="tel:+15551234567"></a></li>
+          <li><i data-lucide="mail"></i><a data-content-email href="mailto:info@example.com"></a></li>
+          <li><i data-lucide="map-pin"></i><span data-content="business.address"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p data-content-copyright>© 2024 Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/images.js"></script>
+  <script src="/js/lucide.min.js" defer onload="lucide.createIcons()"></script>
+  <script>
+
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.site-nav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('site-nav--open');
+        toggle.classList.toggle('nav-toggle--open');
+      });
+    }
+
+    // Menu tabs — top-level menus
+    const menuTabsContainer  = document.getElementById('menu-tabs-container');
+    const menuPanelsContainer = document.getElementById('menu-panels-container');
+
+    if (menuTabsContainer && menuPanelsContainer) {
+      menuTabsContainer.addEventListener('click', (e) => {
+        const tab = e.target.closest('.menu-tab');
+        if (!tab) return;
+        const target = tab.dataset.tab;
+
+        // Update tabs
+        menuTabsContainer.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update panels
+        menuPanelsContainer.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById('menu-panel-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    }
+  </script>
+</body>
+</html>
